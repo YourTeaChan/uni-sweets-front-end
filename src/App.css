@@ -1,0 +1,301 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+html {
+    font-family: 'Marmelad', sans-serif;
+    color: #292D32;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+path, svg {
+    pointer-events: none;
+}
+
+/*---------- background blur ----------*/
+
+.background-blur {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(74, 119, 107, 0.6);
+    backdrop-filter: blur(1px);
+    transition: opacity 0.5s;
+    opacity: 0;
+    pointer-events: none;
+}
+.background-blur.background-blur-active{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/*---------- the end of background blur ----------*/
+
+/*---------- navigation menu ----------*/
+
+.navigation-menu.non-expanded, .navigation-menu.expanded {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 3;
+    height: 100%;
+    width: 260px;
+    transition: 0.5s;
+    background-color: #BADFD5;
+    font-size: 20px;
+}
+
+.navigation-menu.non-expanded {
+    width: 92px;
+}
+
+.menu-groups {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    row-gap: 25px;
+}
+
+.menu-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    column-gap: 20px;
+    width: 100%;
+    color: #292D32;
+    user-select: none;
+}
+
+.menu-item svg {
+    padding-left: 30px;
+    min-width: 32px;
+}
+
+.navigation-menu.non-expanded .menu-item-title {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.navigation-menu.expanded .menu-item-title {
+    opacity: 1;
+    transition: opacity 0.5s 0.2s;
+}
+
+.menu-item:hover {
+    background: #A7D1C5;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.menu-item:active {
+    background: #97C3B7;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.burger-menu {
+    margin: 10px 30px;
+    width: max-content;
+}
+
+.burger-menu:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.active-page {
+    background: #97C3B7;
+    border-radius: 10px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: 40px;
+    user-select: none;
+}
+
+.image-logo {
+    width: 120px;
+    transition: width 0.5s;
+}
+
+.text-logo-visible {
+    width: 177px;
+    transition: opacity 0.5s 0.1s;
+}
+
+.image-small-logo {
+    width: 60px;
+    transition: width 0.5s;
+}
+
+.text-logo-non-visible {
+    width: 177px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.mobile-top-bar {
+    display: none;
+}
+
+.adaptive-menu .burger-menu {
+    display: none;
+}
+
+.mobile-bottom-navigation {
+    display: none;
+}
+
+/*---------- the end of navigation menu ----------*/
+
+/*---------- adaptive for navigation menu ----------*/
+
+@media screen and (max-width: 450px) {
+    .mobile-top-bar {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        position: fixed;
+        z-index: 1;
+        height: 50px;
+        width: 100%;
+        background-color: #BADFD5;
+        user-select: none;
+    }
+
+    .adaptive-menu .burger-menu {
+        display: flex;
+        position: absolute;
+        z-index: 4;
+    }
+
+    .text-logo {
+        height: 25px;
+        margin-right: 30px;
+    }
+
+    .navigation-menu .burger-menu {
+        visibility: hidden;
+    }
+
+    .navigation-menu.non-expanded .menu-item-title {
+        opacity: 1;
+    }
+
+    .navigation-menu.non-expanded {
+        width: 260px;
+    }
+
+    .navigation-menu.expanded {
+        transform: translateX(0);
+    }
+
+    .navigation-menu {
+        transform: translateX(-100%);
+    }
+
+    .menu-groups {
+        margin-top: 0;
+        row-gap: 15px;
+    }
+
+    .menu-item {
+        padding: 5px 0;
+    }
+
+    .mobile-bottom-navigation {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        background-color: #BADFD5;
+        justify-content: center;
+        height: 50px;
+        width: 100%;
+    }
+
+    .mobile-navigation-items {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 30px;
+    }
+
+    .mobile-navigation-items * {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 5px;
+    }
+
+    .logo{
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .image-logo, .image-small-logo {
+        width: 60px;
+    }
+
+    .text-logo-visible, .text-logo-non-visible {
+        width: 130px;
+        opacity: 1;
+    }
+}
+
+/*---------- the end of adaptive for navigation menu ----------*/
