@@ -20,7 +20,7 @@ time, mark, audio, video {
 
 html {
     font-family: 'Marmelad', sans-serif;
-    color: #292D32;
+    color: var(--font-and-icons-color);
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -55,19 +55,76 @@ path, svg {
     pointer-events: none;
 }
 
+* {
+    /*outline: 1px solid black;*/
+}
+
+/*========================= color palette =========================*/
+
+:root {
+    --font-and-icons-color: #292D32;
+}
+
+#green-theme {
+    --main-color: #C9E4DF;
+    --hover-color: #B4D9D3;
+    --active-color: #9ECEC5;
+    --blur-color: rgba(50, 100, 91, 0.5);
+}
+
+#blue-theme {
+    --main-color: #C5DEF2;
+    --hover-color: #ABCFEC;
+    --active-color: #8FBFE5;
+    --blur-color: rgba(28, 82, 126, 0.5);
+}
+
+#purple-theme {
+    --main-color: #DBCDF0;
+    --hover-color: #C9B5E8;
+    --active-color: #B699E0;
+    --blur-color: rgba(69, 36, 120, 0.5);
+}
+
+#pink-theme {
+    --main-color: #F2C6DF;
+    --hover-color: #ECACD0;
+    --active-color: #E590C0;
+    --blur-color: rgba(126, 28, 84, 0.5);
+}
+
+#orange-theme {
+    --main-color: #F8D9C4;
+    --hover-color: #F4C7A8;
+    --active-color: #F0B288;
+    --blur-color: rgba(139, 66, 16, 0.5);
+}
+
+#yellow-theme {
+    --main-color: #FAEDCB;
+    --hover-color: #F7E2AE;
+    --active-color: #F4D78D;
+    --blur-color: rgba(145, 108, 13, 0.5);
+}
+
+/*========================= the end of color palette =========================*/
+
+/*========================= components =========================*/
+
 /*---------- background blur ----------*/
 
 .background-blur {
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
-    background-color: rgba(74, 119, 107, 0.6);
+    background-color: var(--blur-color);
     backdrop-filter: blur(1px);
     transition: opacity 0.5s;
     opacity: 0;
     pointer-events: none;
 }
-.background-blur.background-blur-active{
+
+.background-blur.background-blur-active {
     opacity: 1;
     pointer-events: auto;
 }
@@ -84,7 +141,7 @@ path, svg {
     height: 100%;
     width: 260px;
     transition: 0.5s;
-    background-color: #BADFD5;
+    background-color: var(--main-color);
     font-size: 20px;
 }
 
@@ -110,7 +167,7 @@ path, svg {
     align-items: center;
     column-gap: 20px;
     width: 100%;
-    color: #292D32;
+    color: var(--font-and-icons-color);
     user-select: none;
 }
 
@@ -131,13 +188,13 @@ path, svg {
 }
 
 .menu-item:hover {
-    background: #A7D1C5;
+    background: var(--hover-color);
     cursor: pointer;
     border-radius: 10px;
 }
 
 .menu-item:active {
-    background: #97C3B7;
+    background: var(--active-color);
     cursor: pointer;
     border-radius: 10px;
 }
@@ -153,7 +210,7 @@ path, svg {
 }
 
 .active-page {
-    background: #97C3B7;
+    background: var(--active-color);
     border-radius: 10px;
 }
 
@@ -212,7 +269,7 @@ path, svg {
         z-index: 1;
         height: 50px;
         width: 100%;
-        background-color: #BADFD5;
+        background-color: var(--main-color);
         user-select: none;
     }
 
@@ -260,7 +317,7 @@ path, svg {
         display: flex;
         position: fixed;
         bottom: 0;
-        background-color: #BADFD5;
+        background-color: var(--main-color);
         justify-content: center;
         height: 50px;
         width: 100%;
@@ -283,7 +340,7 @@ path, svg {
         padding: 0 5px;
     }
 
-    .logo{
+    .logo {
         flex-direction: row;
         justify-content: center;
     }
@@ -299,3 +356,180 @@ path, svg {
 }
 
 /*---------- the end of adaptive for navigation menu ----------*/
+
+/*---------- filters ----------*/
+
+.dropdown-filter,
+.checkbox-filter {
+    display: flex;
+    height: max-content;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 5px;
+    background-color: var(--main-color);
+    user-select: none;
+}
+
+.dropdown-filter-wrapper,
+.checkbox-filter-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    margin: 10px 10px;
+    height: max-content;
+}
+
+.dropdown-filter:hover,
+.checkbox-filter:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+.dropdown-filter:active,
+.checkbox-filter:active {
+    background-color: var(--active-color);
+    cursor: pointer;
+}
+
+.dropdown-filter-arrow-up {
+    transform: rotate(0.5turn);
+    transition: 0.2s;
+}
+
+.dropdown-filter-arrow-down {
+    transition: 0.2s;
+}
+
+.checkbox {
+    height: 15px;
+    width: 15px;
+    accent-color: var(--font-and-icons-color);
+    cursor: pointer;
+}
+
+/*---------- the end of filter drop-down menu ----------*/
+
+/*========================= the end of components =========================*/
+
+/*========================= pages =========================*/
+
+/*---------- announcement page ----------*/
+
+.announcements-wrapper {
+    margin-left: 92px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.announcements-top-bar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.announcements-filters-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 20px;
+    padding-left: 50px;
+    column-gap: 30px;
+}
+
+.announcements-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 500px);
+    justify-content: center;
+    margin: 0 20px 20px 20px;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.announcement-card {
+    height: 220px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.announcement-card-information {
+    display: flex;
+    flex-direction: row;
+    width: 460px;
+}
+
+.announcement-card-client-information {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    width: 170px;
+    /*background-color: yellow;*/
+}
+
+.announcement-card-client-information-photo-and-marks,
+.announcement-card-client-information-location,
+.announcement-card-client-information-date,
+.announcement-card-order-information-hashtags {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.user-photo {
+    height: 50px;
+    width: 50px;
+    margin-right: 20px;
+    border-radius: 25px;
+    background-color: white;
+}
+
+.announcement-card-div-between {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: palevioletred;*/
+}
+
+.announcement-card-line-between {
+    height: 100%;
+    display: block;
+    width: 3px;
+    border-radius: 3px;
+    background-color: var(--font-and-icons-color);
+}
+
+.announcement-card-order-information {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    width: 60%;
+    /*background-color: aqua;*/
+}
+
+.announcement-card-order-information-title {
+    display: flex;
+    height: 50px;
+}
+
+.announcement-card-order-information-description {
+    display: flex;
+    height: 63px;
+}
+
+.announcement-card-order-information-hashtags {
+    display: flex;
+}
+
+/*---------- the end of filters ----------*/
+
+/*========================= the end of pages =========================*/
