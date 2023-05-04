@@ -114,7 +114,9 @@ export const NavigationMenu = () => {
                         <NavigationMenuLink toPage={"/tasks"}>
                             <TasksIcon/>
                         </NavigationMenuLink>
-                        <NotificationsIcon/>
+                        <div>
+                            <NotificationsIcon/>
+                        </div>
                         <NavigationMenuLink toPage={"/profile"}>
                             <ProfileIcon/>
                         </NavigationMenuLink>
