@@ -10,9 +10,11 @@ export const AnnouncementCard = (props) => {
             <div className="announcement-card-information">
                 <div className="announcement-card-client-information">
                     <div className="announcement-card-client-information-photo-and-marks">
-                        <div className="user-photo"></div>
-                        <FlashIcon/>
-                        <HeartIcon/>
+                        <div className="announcement-card-client-information-user-photo"></div>
+                        <div className="announcement-card-client-information-marks">
+                            <FlashIcon/>
+                            <HeartIcon/>
+                        </div>
                     </div>
                     <div className="announcement-card-client-information-username">
                         {props.name}
@@ -31,14 +33,14 @@ export const AnnouncementCard = (props) => {
                 </div>
                 <div className="announcement-card-order-information">
                     <div className="announcement-card-order-information-title">
-                        Order
+                        Title Title Title Title Title Title Title Title Title
                     </div>
                     <div className="announcement-card-order-information-description">
-                        Description Description Description Description Description Description Description Description Description Description
+                        Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description
                     </div>
-                    <div className="announcement-card-order-information-hashtags">
+                    <div className="announcement-card-order-information-dessert-type">
                         <CakeIcon/>
-                        #cake
+                        #cake #cupcake #cookie
                     </div>
                 </div>
             </div>
