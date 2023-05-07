@@ -1,5 +1,5 @@
 import {AnnouncementCard} from "../components/AnnouncementCard";
-import {DropdownFilter} from "../components/DropdownFilter";
+import {Dropdown} from "../components/Dropdown";
 import {CheckboxFilter} from "../components/CheckboxFilter";
 import {ReactComponent as ArrowRightIcon} from "../images/svg/arrow-right-icon.svg";
 import {ReactComponent as FilterIcon} from "../images/svg/filter-icon.svg";
@@ -29,10 +29,10 @@ export const Announcements = (props) => {
                     </div>
                 </div>
                 <div className="announcements-filters-wrapper">
-                    <DropdownFilter name="Dessert type" icon={<CakeIcon/>} id="dessert" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
-                    <DropdownFilter name="Location" icon={<LocationIcon/>} id="location" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
-                    <DropdownFilter name="Date" icon={<ClockIcon/>} id="date" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
-                    <DropdownFilter name="Sort" icon={<SortIcon/>} id="sort" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
+                    <Dropdown name="Dessert type" icon={<CakeIcon/>} id="dessert" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
+                    <Dropdown name="Location" icon={<LocationIcon/>} id="location" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
+                    <Dropdown name="Date" icon={<ClockIcon/>} id="date" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
+                    <Dropdown name="Sort" icon={<SortIcon/>} id="sort" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
                     <CheckboxFilter name="Only quick order" icon={<FlashIcon/>} id="quick" filters={props.filters} setFilter={props.setFilter}/>
                     <CheckboxFilter name="Only favorites" icon={<HeartIcon/>} id="favorites" filters={props.filters} setFilter={props.setFilter}/>
                 </div>

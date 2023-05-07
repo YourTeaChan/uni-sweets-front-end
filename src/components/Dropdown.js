@@ -1,7 +1,7 @@
 import {ReactComponent as ArrowDownIcon} from "../images/svg/arrow-down-icon.svg";
 import {useEffect, useState} from "react";
 
-export const DropdownFilter = (props) => {
+export const Dropdown = (props) => {
     const [isOpen, setOpen] = useState(false)
 
     useEffect(() => {
