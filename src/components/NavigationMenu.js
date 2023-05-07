@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import {NavigationMenuLink} from "./NavigationMenuLink";
+import {BackgroundBlur} from "./BackgroundBlur";
+import {Notifications} from "./Notifications";
 import {ReactComponent as BurgerMenuIcon} from "../images/svg/burger-menu-icon.svg";
 import {ReactComponent as ProfileIcon} from "../images/svg/profile-icon.svg";
 import {ReactComponent as AnnouncementsIcon} from "../images/svg/announcements-icon.svg";
@@ -9,10 +11,10 @@ import {ReactComponent as TasksIcon} from "../images/svg/tasks-icon.svg";
 import {ReactComponent as CalendarIcon} from "../images/svg/calendar-icon.svg";
 import {ReactComponent as RecipesIcon} from "../images/svg/recipes-icon.svg";
 import {ReactComponent as SettingsIcon} from "../images/svg/settings-icon.svg";
-import {BackgroundBlur} from "./BackgroundBlur";
 
 export const NavigationMenu = () => {
     const [expandedState, setExpandedState] = useState(false);
+    const [notificationVisible, setNotificationVisible] = useState(false)
 
     useEffect(() => {
         const menuElement = document.querySelector(".navigation-menu.expanded")
@@ -51,9 +53,14 @@ export const NavigationMenu = () => {
                                 <p className="menu-item-title">Announcements</p>
                             </div>
                         </NavigationMenuLink>
-                        <div className="menu-item">
-                            <NotificationsIcon/>
-                            <p className="menu-item-title">Notifications</p>
+                        <div className="menu-item-wrapper">
+                            <div className={`menu-item ${notificationVisible ? "active-page" : ""}`} onClick={() => {
+                                setNotificationVisible(!notificationVisible)
+                            }}>
+                                <NotificationsIcon/>
+                                <p className="menu-item-title">Notifications</p>
+                            </div>
+                            <Notifications visible={notificationVisible} setVisible={setNotificationVisible}/>
                         </div>
                         <NavigationMenuLink toPage={"/messages"}>
                             <div className="menu-item">
@@ -91,11 +98,13 @@ export const NavigationMenu = () => {
                         </NavigationMenuLink>
                     </div>
                 </div>
+
                 <div className={"logo"}>
                     <img className={`image-${expandedState ? "" : "small-"}logo`} src={require("../images/png/unicorn-logo.png")} alt={"logo"}/>
                     <img className={`text-logo-${expandedState ? "" : "non-"}visible`} src={require("../images/png/uni-sweets-logo.png")} alt={"logo"}/>
                 </div>
             </div>
+
             <div className="adaptive-menu">
                 <div className="burger-menu" onClick={() => setExpandedState(!expandedState)}>
                     <BurgerMenuIcon/>
@@ -103,27 +112,29 @@ export const NavigationMenu = () => {
                 <div className={"mobile-top-bar"}>
                     <img className={"text-logo"} src={require("../images/png/uni-sweets-logo.png")} alt={"logo"}/>
                 </div>
+
                 <div className={"mobile-bottom-navigation"}>
                     <div className="mobile-navigation-items">
-                        <NavigationMenuLink toPage={"/announcements"}>
+                        <NavigationMenuLink toPage={"/announcements"} onClick={() => setNotificationVisible(false)}>
                             <AnnouncementsIcon/>
                         </NavigationMenuLink>
-                        <NavigationMenuLink toPage={"/messages"}>
+                        <NavigationMenuLink toPage={"/messages"} onClick={() => setNotificationVisible(false)}>
                             <MessagesIcon/>
                         </NavigationMenuLink>
-                        <NavigationMenuLink toPage={"/tasks"}>
+                        <NavigationMenuLink toPage={"/tasks"} onClick={() => setNotificationVisible(false)}>
                             <TasksIcon/>
                         </NavigationMenuLink>
-                        <div>
+                        <div className={`mobile-notification-button ${notificationVisible ? "active-page" : ""}`} onClick={() => setNotificationVisible(!notificationVisible)}>
                             <NotificationsIcon/>
                         </div>
-                        <NavigationMenuLink toPage={"/profile"}>
+                        <NavigationMenuLink toPage={"/profile"} onClick={() => setNotificationVisible(false)}>
                             <ProfileIcon/>
                         </NavigationMenuLink>
                     </div>
                 </div>
+                <Notifications visible={notificationVisible} setVisible={setNotificationVisible}/>
             </div>
-            <BackgroundBlur blurLayer={2} isActive={expandedState}/>
+            <BackgroundBlur blurLayer={18} isActive={expandedState}/>
         </>
     )
 }
