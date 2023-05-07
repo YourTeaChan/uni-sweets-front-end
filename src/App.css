@@ -70,6 +70,7 @@ path, svg {
     --hover-color: #B4D9D3;
     --active-color: #9ECEC5;
     --blur-color: rgba(50, 100, 91, 0.5);
+    --selection-color: #6FB6AA;
 }
 
 #blue-theme {
@@ -77,6 +78,7 @@ path, svg {
     --hover-color: #ABCFEC;
     --active-color: #8FBFE5;
     --blur-color: rgba(28, 82, 126, 0.5);
+    --selection-color: #509BD8;
 }
 
 #purple-theme {
@@ -84,6 +86,7 @@ path, svg {
     --hover-color: #C9B5E8;
     --active-color: #B699E0;
     --blur-color: rgba(69, 36, 120, 0.5);
+    --selection-color: #885BCD;
 }
 
 #pink-theme {
@@ -91,6 +94,7 @@ path, svg {
     --hover-color: #ECACD0;
     --active-color: #E590C0;
     --blur-color: rgba(126, 28, 84, 0.5);
+    --selection-color: #D8509D;
 }
 
 #orange-theme {
@@ -98,6 +102,7 @@ path, svg {
     --hover-color: #F4C7A8;
     --active-color: #F0B288;
     --blur-color: rgba(139, 66, 16, 0.5);
+    --selection-color: #E9843F;
 }
 
 #yellow-theme {
@@ -105,6 +110,11 @@ path, svg {
     --hover-color: #F7E2AE;
     --active-color: #F4D78D;
     --blur-color: rgba(145, 108, 13, 0.5);
+    --selection-color: #EEB939;
+}
+
+::selection{
+    background-color: var(--selection-color);
 }
 
 /*========================= the end of color palette =========================*/
@@ -265,7 +275,7 @@ path, svg {
         justify-content: right;
         align-items: center;
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         height: 50px;
         width: 100%;
         background-color: var(--main-color);
@@ -320,6 +330,7 @@ path, svg {
         justify-content: center;
         height: 50px;
         width: 100%;
+        z-index: 2;
     }
 
     .mobile-navigation-items {
@@ -384,12 +395,14 @@ path, svg {
     height: max-content;
     background-color: var(--main-color);
     border-radius: 10px;
+    transition: 0.2s;
 }
 
 .dropdown-filter-header:hover,
 .checkbox-filter-wrapper:hover {
     background-color: var(--hover-color);
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .dropdown-filter-header:active,
@@ -489,10 +502,11 @@ path, svg {
 }
 
 .announcements-top-bar {
-    position: sticky;
+    position: fixed;
     top: 0;
-    width: 100%;
+    width: calc(100% - 92px);
     background-color: white;
+    z-index: 1;
 }
 
 .announcements-filters-button {
@@ -514,7 +528,7 @@ path, svg {
     display: grid;
     grid-template-columns: repeat(auto-fit, 500px);
     justify-content: center;
-    margin: 10px 20px 20px 20px;
+    margin: 90px 20px 20px 20px;
     row-gap: 20px;
     column-gap: 20px;
 }
@@ -528,6 +542,18 @@ path, svg {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: 0.2s;
+    z-index: 0;
+}
+
+.announcement-card:hover {
+    background-color: var(--hover-color);
+    scale: 1.03;
+}
+
+.announcement-card:active {
+    background-color: var(--active-color);
+    transition: 0.2s;
 }
 
 .announcement-card-information {
@@ -607,9 +633,21 @@ path, svg {
 
 /*---------- the end of filters ----------*/
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 1433px){
     .announcements-list {
-        grid-template-columns: repeat(auto-fit, 360px);
+        margin-top: 155px;
+    }
+}
+
+@media screen and (max-width: 828px){
+    .announcements-list {
+        margin-top: 215px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .announcements-list {
+        grid-template-columns: repeat(auto-fit, 340px);
     }
 
     .announcements-filters-wrapper {
@@ -620,12 +658,13 @@ path, svg {
         display: flex;
         justify-content: center;
         align-items: center;
+        width: calc(100% - 92px);
     }
 
     .announcements-filters-button {
         display: flex;
         height: max-content;
-        width: 340px;
+        width: 320px;
         border-radius: 10px;
         justify-content: flex-start;
         align-items: center;
@@ -640,7 +679,11 @@ path, svg {
     .announcements-filters-button-chosen-filters {
         display: flex;
         width: 200px;
-        column-gap: 10px;
+        column-gap: 7px;
+    }
+
+    .announcements-list {
+        margin-top: 80px;
     }
 
     .announcement-card-information {
@@ -649,11 +692,11 @@ path, svg {
 
     .announcement-card {
         height: 440px;
-        width: 360px;
+        width: 340px;
     }
 
     .announcement-card-information {
-        width: 320px;
+        width: 300px;
     }
 
     .announcement-card-client-information,
@@ -685,8 +728,12 @@ path, svg {
             margin-left: 0;
         }
 
+        .announcements-top-bar{
+            width: 100%;
+        }
+
         .announcements-list {
-            margin-bottom: 70px;
+            margin: 120px 0 70px 0;
         }
 
         .announcements-filters-button {

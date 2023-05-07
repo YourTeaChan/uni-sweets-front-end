@@ -10,7 +10,8 @@ function App() {
     const [theme, setTheme] = useState("green")
     const dessertFiltersFromDB = ["#cake", "#cupcake", "#cookie"]
     const locationFiltersFromDB = ["Lviv", "Kyiv", "Lutsk", "Rivne", "Ternopil", "Kharkiv"]
-    const dateFiltersFromDB = ["First new", "First old"]
+    const dateFiltersFromDB = ["All time", "Today", "Last week"]
+    const sortingFromDB = ["First new", "First old"]
 
     const createFiltersFromDB = (filters) => {
         return filters.map((value, index) => {
@@ -21,10 +22,14 @@ function App() {
     const dateFilters = createFiltersFromDB(dateFiltersFromDB)
     dateFilters[0].checked = true
 
+    const sorting = createFiltersFromDB(sortingFromDB)
+    sorting[0].checked = true
+
     const [filters, setFilter] = useState({
         dessert: createFiltersFromDB(dessertFiltersFromDB),
         location: createFiltersFromDB(locationFiltersFromDB),
         date: [...dateFilters],
+        sort: [...sorting],
         quick: false,
         favorites: false
     })

@@ -7,6 +7,7 @@ import {ReactComponent as CakeIcon} from "../images/svg/cake-icon.svg";
 import {ReactComponent as HeartIcon} from "../images/svg/heart-icon.svg";
 import {ReactComponent as FlashIcon} from "../images/svg/flash-icon.svg";
 import {ReactComponent as ClockIcon} from "../images/svg/clock-icon.svg";
+import {ReactComponent as SortIcon} from "../images/svg/sort-icon.svg";
 import {ReactComponent as LocationIcon} from "../images/svg/location-icon.svg";
 
 export const Announcements = (props) => {
@@ -31,6 +32,7 @@ export const Announcements = (props) => {
                     <DropdownFilter name="Dessert type" icon={<CakeIcon/>} id="dessert" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
                     <DropdownFilter name="Location" icon={<LocationIcon/>} id="location" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
                     <DropdownFilter name="Date" icon={<ClockIcon/>} id="date" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
+                    <DropdownFilter name="Sort" icon={<SortIcon/>} id="sort" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
                     <CheckboxFilter name="Only quick order" icon={<FlashIcon/>} id="quick" filters={props.filters} setFilter={props.setFilter}/>
                     <CheckboxFilter name="Only favorites" icon={<HeartIcon/>} id="favorites" filters={props.filters} setFilter={props.setFilter}/>
                 </div>
