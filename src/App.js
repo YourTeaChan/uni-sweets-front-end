@@ -3,6 +3,7 @@ import {NavigationMenu} from "./components/NavigationMenu";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Announcements} from "./pages/Announcements";
 import {createContext, useEffect, useState} from "react";
+import {Settings} from "./pages/Settings";
 
 export const AppContext = createContext(null)
 
@@ -50,7 +51,7 @@ function App() {
                         <Route path={"/tasks"}/>
                         <Route path={"/calendar"}/>
                         <Route path={"/recipes"}/>
-                        <Route path={"/settings"}/>
+                        <Route path={"/settings"} element={<Settings theme={theme} setTheme={setTheme}/>}/>
                     </Routes>
                 </BrowserRouter>
             </AppContext.Provider>
