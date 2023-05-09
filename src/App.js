@@ -1,8 +1,9 @@
 import './App.css';
-import {NavigationMenu} from "./components/NavigationMenu";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Announcements} from "./pages/Announcements";
 import {createContext, useEffect, useState} from "react";
+import {NavigationMenu} from "./components/NavigationMenu";
+import {Profile} from "./pages/Profile";
+import {Announcements} from "./pages/Announcements";
 import {Settings} from "./pages/Settings";
 
 export const AppContext = createContext(null)
@@ -45,7 +46,7 @@ function App() {
                 <BrowserRouter>
                     <NavigationMenu/>
                     <Routes>
-                        <Route path={"/profile"}/>
+                        <Route path={"/profile"} element={<Profile/>}/>
                         <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
                         <Route path={"/messages"}/>
                         <Route path={"/tasks"}/>

@@ -270,7 +270,63 @@ path, svg {
 
 /*---------- the end of navigation menu ----------*/
 
-/*---------- the end of adaptive for navigation menu ----------*/
+/*---------- comment ----------*/
+
+.comment-wrapper {
+    display: flex;
+    flex-direction: column;
+    /*max-width: 600px;*/
+    border-radius: 10px;
+    background-color: var(--main-color);
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.comment-header-user-information,
+.comment-header-rating-and-date {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-header-user-picture {
+    display: flex;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: white;
+}
+
+.comment-header-username {
+
+}
+
+.comment-header-rating {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-header-date {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+.comment-body {
+    display: flex;
+    margin: 0 10px 20px 70px;
+}
+
+/*---------- the end of comment ----------*/
 
 /*---------- filters ----------*/
 
@@ -393,6 +449,108 @@ path, svg {
 
 /*---------- the end of filter drop-down menu ----------*/
 
+/*---------- announcement card ----------*/
+
+.announcement-card {
+    display: flex;
+    height: 220px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: var(--main-color);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 0;
+}
+
+.announcement-card:hover {
+    background-color: var(--hover-color);
+    scale: 1.03;
+}
+
+.announcement-card:active {
+    background-color: var(--active-color);
+    transition: 0.2s;
+}
+
+.announcement-card-information {
+    display: flex;
+    flex-direction: row;
+    width: 460px;
+}
+
+.announcement-card-client-information {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    width: 170px;
+}
+
+.announcement-card-client-information-photo-and-marks,
+.announcement-card-client-information-location,
+.announcement-card-client-information-date,
+.announcement-card-order-information-dessert-type {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.announcement-card-client-information-photo-and-marks {
+    justify-content: space-between;
+}
+
+.announcement-card-client-information-user-photo {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: white;
+}
+
+.announcement-card-client-information-marks {
+    display: flex;
+    column-gap: 10px;
+}
+
+.announcement-card-div-between {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.announcement-card-line-between {
+    display: block;
+    height: 100%;
+    width: 3px;
+    border-radius: 3px;
+    background-color: var(--font-and-icons-color);
+}
+
+.announcement-card-order-information {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    width: 60%;
+}
+
+.announcement-card-order-information-title {
+    height: 2em;
+    overflow: hidden;
+}
+
+.announcement-card-order-information-description {
+    height: 5em;
+    overflow: hidden;
+}
+
+.announcement-card-order-information-dessert-type {
+    margin-top: 1px;
+    overflow: hidden;
+}
+
+/*---------- the end of announcement card ----------*/
+
 /*---------- notifications ----------*/
 
 .notifications-wrapper {
@@ -508,6 +666,172 @@ path, svg {
 
 /*========================= pages =========================*/
 
+/*---------- profile page ----------*/
+
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 92px;
+}
+
+.profile-content {
+    margin: 20px 40px;
+}
+
+.profile-main-part,
+.profile-pictures-and-comments-part {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profile-main-part {
+    max-width: 680px;
+    margin-bottom: 10px;
+}
+
+.profile-main-part-user {
+    margin: 10px 20px 20px 20px;
+}
+
+.profile-main-part-user-information {
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+}
+
+.profile-main-part-user-information-left {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-main-part-user-information-right {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: flex-end;
+    min-width: max-content;
+}
+
+.profile-main-part-user-picture-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-main-part-user-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    background-color: var(--hover-color);
+}
+
+.profile-main-part-user-name {
+    font-size: 20px;
+}
+
+.profile-main-part-user-like-count,
+.profile-main-part-user-location,
+.profile-main-part-user-socials {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.profile-main-part-user-about {
+    display: flex;
+    height: 3em;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.pictures-comments-lists-switcher-wrapper {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.pictures-comments-lists-switcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--main-color);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.pictures-comments-lists-switcher:hover {
+    background-color: var(--hover-color);
+    transition: 0.2s;
+}
+
+.pictures-comments-lists-switcher:active {
+    background-color: var(--active-color);
+}
+
+.pictures-comments-lists-switcher.active {
+    background-color: var(--active-color);
+}
+
+.desserts-pictures-list.non-visible,
+.profile-comments.non-visible {
+    display: none;
+}
+
+.profile-comments-count-and-sorting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 15px;
+    max-width: 940px;
+}
+
+.profile-pictures-and-comments-part {
+    display: flex;
+}
+
+.profile-comments {
+    width: 100%;
+}
+
+.profile-comments-list {
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+    row-gap: 10px;
+    max-width: 800px;
+}
+
+.desserts-pictures-list {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.dessert-picture {
+    display: flex;
+    height: 330px;
+    width: 330px;
+    border-radius: 10px;
+    background-color: var(--active-color);
+    opacity: 0.2;
+}
+
+/*---------- the end of profile page ----------*/
+
 /*---------- announcement page ----------*/
 
 .announcements-wrapper {
@@ -547,104 +871,6 @@ path, svg {
     margin: 90px 20px 20px 20px;
     row-gap: 20px;
     column-gap: 20px;
-}
-
-.announcement-card {
-    height: 220px;
-    width: 500px;
-    border-radius: 10px;
-    background-color: var(--main-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.2s;
-    z-index: 0;
-}
-
-.announcement-card:hover {
-    background-color: var(--hover-color);
-    scale: 1.03;
-}
-
-.announcement-card:active {
-    background-color: var(--active-color);
-    transition: 0.2s;
-}
-
-.announcement-card-information {
-    display: flex;
-    flex-direction: row;
-    width: 460px;
-}
-
-.announcement-card-client-information {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    width: 170px;
-}
-
-.announcement-card-client-information-photo-and-marks,
-.announcement-card-client-information-location,
-.announcement-card-client-information-date,
-.announcement-card-order-information-dessert-type {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-}
-
-.announcement-card-client-information-photo-and-marks {
-    justify-content: space-between;
-}
-
-.announcement-card-client-information-user-photo {
-    height: 50px;
-    width: 50px;
-    border-radius: 25px;
-    background-color: white;
-}
-
-.announcement-card-client-information-marks {
-    display: flex;
-    column-gap: 10px;
-}
-
-.announcement-card-div-between {
-    width: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.announcement-card-line-between {
-    display: block;
-    height: 100%;
-    width: 3px;
-    border-radius: 3px;
-    background-color: var(--font-and-icons-color);
-}
-
-.announcement-card-order-information {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    width: 60%;
-}
-
-.announcement-card-order-information-title {
-    height: 2em;
-    overflow: hidden;
-}
-
-.announcement-card-order-information-description {
-    height: 5em;
-    overflow: hidden;
-}
-
-.announcement-card-order-information-dessert-type {
-    margin-top: 1px;
-    overflow: hidden;
 }
 
 /*---------- the end of announcement page ----------*/
@@ -712,6 +938,19 @@ path, svg {
     }
 
     /*---------- the end of announcements ----------*/
+}
+
+@media screen and (max-width: 870px) {
+    /*---------- profile ----------*/
+    .desserts-pictures-list {
+        flex-direction: column;
+        align-items: center;
+        /*display: grid;*/
+        /*grid-template-columns: repeat(auto-fit, 330px);*/
+        /*justify-content: center;*/
+    }
+
+    /*---------- the end of profile ----------*/
 }
 
 @media screen and (max-width: 828px) {
@@ -802,7 +1041,7 @@ path, svg {
         height: 8em;
     }
 
-    /*---------- announcements ----------*/
+    /*---------- the end of announcements ----------*/
 }
 
 @media screen and (max-width: 550px) {
@@ -915,6 +1154,51 @@ path, svg {
     }
 
     /*---------- the end of navigation menu ----------*/
+    /*---------- profile ----------*/
+    .profile-wrapper {
+        margin-left: 0;
+    }
+
+    .profile-content {
+        margin: 50px 20px 0 20px;
+    }
+
+    .profile-main-part-user {
+        margin: 20px;
+    }
+
+    .profile-main-part-user-information-left,
+    .profile-main-part-user-information-right {
+        row-gap: 15px;
+    }
+
+    .profile-main-part-user-information-left {
+        justify-content: flex-end;
+    }
+
+    .profile-main-part-user-picture {
+        height: 120px;
+        width: 120px;
+    }
+
+    .profile-main-part-user-about {
+        margin-top: 15px;
+    }
+
+    .profile-comments-count-and-sorting {
+        margin-top: 5px;
+    }
+
+    .profile-comments-list {
+        margin: 0 20px 70px 20px;
+        max-height: unset;
+    }
+
+    .desserts-pictures-list {
+        margin-bottom: 70px;
+    }
+
+    /*---------- the end of profile ----------*/
     /*---------- announcements ----------*/
     .announcements-wrapper {
         margin-left: 0;
@@ -948,6 +1232,29 @@ path, svg {
     }
 
     /*---------- the end of notifications ----------*/
+}
+
+@media screen and (max-width: 380px) {
+    /*---------- profile ----------*/
+    .profile-content {
+        margin: 50px 10px 0 10px;
+    }
+
+    .profile-main-part-user-information {
+        column-gap: 20px;
+    }
+
+    .profile-main-part-user-information-left,
+    .profile-main-part-user-information-right {
+        row-gap: 10px;
+    }
+
+    .profile-main-part-user-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    /*---------- the end of profile ----------*/
 }
 
 /*========================= the end of adaptive =========================*/
