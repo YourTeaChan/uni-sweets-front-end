@@ -1281,12 +1281,12 @@ path, svg {
         width: 100%;
     }
 
-    .announcements-filters-wrapper.open {
+    .announcements-filters-wrapper {
         width: calc(100% - 20px);
         margin: 50px 10px 70px 10px;
     }
 
-    .announcements-filters-wrapper .dropdown-filter-content {
+     .announcements-filters-wrapper .dropdown-filter-content {
         max-height: 301px;
     }
 

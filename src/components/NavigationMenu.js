@@ -115,18 +115,18 @@ export const NavigationMenu = () => {
 
                 <div className={"mobile-bottom-navigation"}>
                     <div className="mobile-navigation-items">
+                        <div className={`mobile-notification-button ${notificationVisible ? "active-page" : ""}`} onClick={() => setNotificationVisible(!notificationVisible)}>
+                            <NotificationsIcon/>
+                        </div>
+                        <NavigationMenuLink toPage={"/tasks"} onClick={() => setNotificationVisible(false)}>
+                            <TasksIcon/>
+                        </NavigationMenuLink>
                         <NavigationMenuLink toPage={"/announcements"} onClick={() => setNotificationVisible(false)}>
                             <AnnouncementsIcon/>
                         </NavigationMenuLink>
                         <NavigationMenuLink toPage={"/messages"} onClick={() => setNotificationVisible(false)}>
                             <MessagesIcon/>
                         </NavigationMenuLink>
-                        <NavigationMenuLink toPage={"/tasks"} onClick={() => setNotificationVisible(false)}>
-                            <TasksIcon/>
-                        </NavigationMenuLink>
-                        <div className={`mobile-notification-button ${notificationVisible ? "active-page" : ""}`} onClick={() => setNotificationVisible(!notificationVisible)}>
-                            <NotificationsIcon/>
-                        </div>
                         <NavigationMenuLink toPage={"/profile"} onClick={() => setNotificationVisible(false)}>
                             <ProfileIcon/>
                         </NavigationMenuLink>
