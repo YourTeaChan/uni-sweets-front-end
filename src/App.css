@@ -275,7 +275,6 @@ path, svg {
 .comment-wrapper {
     display: flex;
     flex-direction: column;
-    /*max-width: 600px;*/
     border-radius: 10px;
     background-color: var(--main-color);
 }
@@ -337,7 +336,7 @@ path, svg {
     border-radius: 10px;
     justify-content: center;
     align-items: center;
-    margin: 5px 5px;
+    margin: 5px;
     user-select: none;
 }
 
@@ -352,11 +351,12 @@ path, svg {
     flex-direction: row;
     align-items: center;
     column-gap: 10px;
-    padding: 10px 10px;
+    padding: 10px;
     height: max-content;
     background-color: var(--main-color);
     border-radius: 10px;
     transition: 0.2s;
+    /*min-width: 100%;*/
 }
 
 .dropdown-filter-header:hover,
@@ -834,11 +834,23 @@ path, svg {
 
 /*---------- announcement page ----------*/
 
+.announcements-filters-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 20px;
+    padding-left: 50px;
+    column-gap: 30px;
+}
+
 .announcements-wrapper {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     margin-left: 92px;
+    position: relative;
 }
 
 .announcements-top-bar {
@@ -849,19 +861,13 @@ path, svg {
     z-index: 1;
 }
 
-.announcements-filters-button {
+.announcements-filters-button,
+.announcements-filters-header {
     display: none;
 }
 
 .announcements-filters-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 10px 20px;
-    padding-left: 50px;
-    column-gap: 30px;
+
 }
 
 .announcements-list {
@@ -945,9 +951,6 @@ path, svg {
     .desserts-pictures-list {
         flex-direction: column;
         align-items: center;
-        /*display: grid;*/
-        /*grid-template-columns: repeat(auto-fit, 330px);*/
-        /*justify-content: center;*/
     }
 
     /*---------- the end of profile ----------*/
@@ -964,14 +967,6 @@ path, svg {
 
 @media screen and (max-width: 700px) {
     /*---------- announcements ----------*/
-    .announcements-list {
-        grid-template-columns: repeat(auto-fit, 340px);
-    }
-
-    .announcements-filters-wrapper {
-        display: none;
-    }
-
     .announcements-top-bar {
         display: flex;
         justify-content: center;
@@ -981,17 +976,31 @@ path, svg {
 
     .announcements-filters-button {
         display: flex;
+        column-gap: 10px;
         height: max-content;
         width: 320px;
-        border-radius: 10px;
         justify-content: flex-start;
         align-items: center;
-        column-gap: 10px;
         margin: 10px 0;
-        padding: 10px 10px;
+        padding: 10px;
+        border-radius: 10px;
         background-color: var(--main-color);
         cursor: pointer;
         user-select: none;
+        transition: opacity 0.2s;
+    }
+
+    .announcements-filters-button:hover {
+        background-color: var(--hover-color);
+        transition: 0.2s;
+    }
+
+    .announcements-filters-button:active {
+        background-color: var(--active-color);
+    }
+
+    .announcements-filters-button.non-visible {
+        opacity: 0;
     }
 
     .announcements-filters-button-chosen-filters {
@@ -1000,7 +1009,71 @@ path, svg {
         column-gap: 7px;
     }
 
+    .announcements-filters-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: calc(100% - 92px);
+        margin-left: 92px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        background-color: white;
+    }
+
+    .announcements-filters-wrapper.open {
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    .announcements-filters-header {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 20px 0 20px;
+        font-size: 20px;
+    }
+
+    .announcements-filters-title {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        padding-left: 32px;
+    }
+
+    .announcements-filters-content {
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: center;
+        margin: 20px;
+        padding: 0;
+    }
+
+    .announcements-filters-wrapper .dropdown-filter-header, .checkbox-filter-wrapper {
+        width: calc(100% - 20px);
+        justify-content: space-between;
+    }
+
+    .announcements-filters-wrapper .dropdown-filter,
+    .announcements-filters-wrapper .checkbox-filter {
+        width: 100%;
+        margin: 0;
+    }
+
+    .announcements-filters-wrapper .dropdown-filter-content {
+        max-height: 430px;
+    }
+
     .announcements-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin-top: 80px;
     }
 
@@ -1148,7 +1221,7 @@ path, svg {
         left: 0;
         padding: 0;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 50px - 50px);
         z-index: 16;
         margin: 50px 0
     }
@@ -1208,12 +1281,25 @@ path, svg {
         width: 100%;
     }
 
-    .announcements-list {
-        margin: 120px 0 70px 0;
+    .announcements-filters-wrapper.open {
+        width: calc(100% - 20px);
+        margin: 50px 10px 70px 10px;
+    }
+
+    .announcements-filters-wrapper .dropdown-filter-content {
+        max-height: 301px;
+    }
+
+    .announcements-filters-header {
+        margin-top: 10px;
     }
 
     .announcements-filters-button {
         margin-top: 60px;
+    }
+
+    .announcements-list {
+        margin: 130px 0 70px 0;
     }
 
     /*---------- the end of announcements ----------*/
@@ -1224,7 +1310,6 @@ path, svg {
 
     .notifications-groups {
         width: 100%;
-        margin-bottom: 100px;
     }
 
     .notification-group-item {
@@ -1255,6 +1340,26 @@ path, svg {
     }
 
     /*---------- the end of profile ----------*/
+    /*---------- announcement page ----------*/
+    .announcements-filters-button {
+        width: 280px;
+        column-gap: 5px;
+    }
+
+    .announcements-filters-button-chosen-filters {
+        width: min-content;
+        column-gap: 0;
+    }
+
+    .announcement-card {
+        width: 300px;
+    }
+
+    .announcement-card-information {
+        width: 260px;
+    }
+
+    /*---------- the end of announcement page ----------*/
 }
 
 /*========================= the end of adaptive =========================*/
