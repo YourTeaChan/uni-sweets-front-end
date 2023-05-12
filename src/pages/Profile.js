@@ -10,7 +10,7 @@ import {ReactComponent as YouTubeIcon} from "../images/svg/youtube-icon.svg";
 import {ReactComponent as TikTokIcon} from "../images/svg/tiktok-icon.svg";
 import {ReactComponent as SortIcon} from "../images/svg/sort-icon.svg";
 
-export const Profile = () => {
+export const Profile = (props) => {
     const sortingFromDB = ["First new", "First old", "First good", "First bad"]
     const sorting = sortingFromDB.map((value, index) => {
         return {id: index, title: value, checked: false}
@@ -30,7 +30,9 @@ export const Profile = () => {
                         <div className="profile-main-part-user-information">
                             <div className="profile-main-part-user-information-left">
                                 <div className="profile-main-part-user-picture-wrapper">
-                                    <div className="profile-main-part-user-picture"></div>
+                                    <div className="profile-main-part-user-picture">
+                                        {props.userInformation.userPicture && <img src={URL.createObjectURL(props.userInformation.userPicture)} alt={""}/>}
+                                    </div>
                                 </div>
                                 <div className="profile-main-part-user-like-count">
                                     <HeartIcon/> 15

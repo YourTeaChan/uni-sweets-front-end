@@ -299,7 +299,7 @@ path, svg {
     display: flex;
     height: 50px;
     width: 50px;
-    border-radius: 25px;
+    border-radius: 50%;
     background-color: white;
 }
 
@@ -503,7 +503,7 @@ path, svg {
 .announcement-card-client-information-user-photo {
     height: 50px;
     width: 50px;
-    border-radius: 25px;
+    border-radius: 50%;
     background-color: white;
 }
 
@@ -652,7 +652,7 @@ path, svg {
     height: 50px;
     width: 50px;
     background-color: white;
-    border-radius: 25px;
+    border-radius: 50%;
 }
 
 .notification-item-text {
@@ -726,8 +726,15 @@ path, svg {
 .profile-main-part-user-picture {
     width: 150px;
     height: 150px;
-    border-radius: 150px;
+    border-radius: 50%;
     background-color: var(--hover-color);
+}
+
+.profile-main-part-user-picture img {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%
 }
 
 .profile-main-part-user-name {
@@ -885,26 +892,219 @@ path, svg {
 
 .settings-wrapper {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     margin-left: 92px;
 }
 
-.theme-preferences-buttons {
+.settings-content {
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 40px;
+    margin: 40px;
+}
+
+.input {
+    width: 100%;
+    border: var(--font-and-icons-color) 1px solid;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-family: 'Marmelad', sans-serif;
+    color: var(--font-and-icons-color);
+}
+
+.text-area {
+    resize: none;
+    width: calc(100% - 22px);
+    border: var(--font-and-icons-color) 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: 'Marmelad', sans-serif;
+    color: var(--font-and-icons-color);
+}
+
+.text-area::-webkit-scrollbar {
+    display: none;
+}
+
+.profile-settings {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-width: 600px;
+    min-width: max-content;
+}
+
+.profile-settings-title {
+    display: flex;
+    font-size: 20px;
+}
+
+.profile-main-settings {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-main-settings-user-picture-wrapper {
+    display: flex;
     justify-content: center;
-    margin-top: 100px;
+    align-items: center;
+    margin: 10px;
+}
+
+.profile-main-settings-user-picture {
+    position: relative;
+    display: flex;
+    height: 150px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--hover-color);
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.profile-main-settings-user-picture:hover {
+    opacity: 0.9;
+}
+
+
+.profile-main-settings-user-picture img {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%
+}
+
+.gallery-edit-button {
+    position: absolute;
+    top: 100%;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.gallery-edit-button:hover {
+    opacity: 0.7;
+}
+
+.gallery-edit-button:active {
+    opacity: 1;
+}
+
+#image-input {
+    width: 100px;
+    display: none;
+}
+
+.profile-main-settings-username-and-user-location-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.profile-main-settings-username {
+    display: flex;
+    height: 32px;
+}
+
+.profile-main-settings-user-location .dropdown-filter {
+    margin: 0;
+}
+
+.profile-main-settings-user-location .dropdown-filter-header {
+    width: calc(100% - 20px);
+    justify-content: space-between;
+}
+
+.profile-socials-settings {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+}
+
+.profile-socials-settings-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-socials-settings-wrapper {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+
+.profile-socials-settings-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+}
+
+.profile-socials-settings-link {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.profile-socials-settings-link svg {
+    min-width: 32px;
+}
+
+.profile-main-settings-user-about-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.profile-main-settings-user-about-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-preferences-settings {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-width: 600px;
+    min-width: max-content;
+}
+
+.theme-preferences-settings-title {
+    font-size: 20px;
+}
+
+.theme-preferences-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, 1fr));
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .theme-preference-button {
     display: flex;
     height: 50px;
-    width: 100px;
+    width: 100%;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
+    user-select: none;
+}
+
+.theme-preference-button.active {
+    height: 42px;
+    width: calc(100% - 8px);
+    border: solid 4px var(--active-color);
 }
 
 #green-theme-button {
@@ -1115,6 +1315,13 @@ path, svg {
     }
 
     /*---------- the end of announcements ----------*/
+    /*---------- settings ----------*/
+    .profile-socials-settings-wrapper {
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    /*---------- the end of settings ----------*/
 }
 
 @media screen and (max-width: 550px) {
@@ -1286,7 +1493,7 @@ path, svg {
         margin: 50px 10px 70px 10px;
     }
 
-     .announcements-filters-wrapper .dropdown-filter-content {
+    .announcements-filters-wrapper .dropdown-filter-content {
         max-height: 301px;
     }
 
@@ -1317,6 +1524,29 @@ path, svg {
     }
 
     /*---------- the end of notifications ----------*/
+    /*---------- settings ----------*/
+    .settings-wrapper {
+        margin-left: 0;
+    }
+
+    .settings-content {
+        margin: 70px 20px;
+    }
+
+    .profile-main-settings {
+        justify-content: space-between;
+    }
+
+    .profile-main-settings-user-picture-wrapper {
+        margin: 0;
+    }
+
+    .profile-socials-settings-wrapper,
+    .profile-socials-settings-links-wrapper {
+        row-gap: 10px;
+    }
+
+    /*---------- the end of settings ----------*/
 }
 
 @media screen and (max-width: 380px) {
@@ -1340,7 +1570,7 @@ path, svg {
     }
 
     /*---------- the end of profile ----------*/
-    /*---------- announcement page ----------*/
+    /*---------- announcements----------*/
     .announcements-filters-button {
         width: 280px;
         column-gap: 5px;
@@ -1359,7 +1589,14 @@ path, svg {
         width: 260px;
     }
 
-    /*---------- the end of announcement page ----------*/
+    /*---------- the end of announcements ----------*/
+    /*---------- settings ----------*/
+    .profile-main-settings-user-picture {
+        height: 100px;
+        width: 100px;
+    }
+
+    /*---------- the end of settings ----------*/
 }
 
 /*========================= the end of adaptive =========================*/

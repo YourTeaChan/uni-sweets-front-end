@@ -27,6 +27,12 @@ function App() {
     const sorting = createFiltersFromDB(sortingFromDB)
     sorting[0].checked = true
 
+    const [userInformation, setUserInformation] = useState({
+        userLocation: "Location",
+        location: createFiltersFromDB(locationFiltersFromDB),
+        userPicture: null
+    })
+
     const [filters, setFilter] = useState({
         dessert: createFiltersFromDB(dessertFiltersFromDB),
         location: createFiltersFromDB(locationFiltersFromDB),
@@ -46,13 +52,14 @@ function App() {
                 <BrowserRouter>
                     <NavigationMenu/>
                     <Routes>
-                        <Route path={"/profile"} element={<Profile/>}/>
+                        <Route path={"/profile"} element={<Profile userInformation={userInformation}/>}/>
                         <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
                         <Route path={"/messages"}/>
                         <Route path={"/tasks"}/>
                         <Route path={"/calendar"}/>
                         <Route path={"/recipes"}/>
-                        <Route path={"/settings"} element={<Settings theme={theme} setTheme={setTheme}/>}/>
+                        <Route path={"/settings"}
+                               element={<Settings userInformation={userInformation} setUserInformation={setUserInformation} theme={theme} setTheme={setTheme}/>}/>
                     </Routes>
                 </BrowserRouter>
             </AppContext.Provider>
