@@ -4,6 +4,7 @@ import {createContext, useEffect, useState} from "react";
 import {NavigationMenu} from "./components/NavigationMenu";
 import {Profile} from "./pages/Profile";
 import {Announcements} from "./pages/Announcements";
+import {Messages} from "./pages/Messages";
 import {Settings} from "./pages/Settings";
 
 export const AppContext = createContext(null)
@@ -28,6 +29,7 @@ function App() {
     sorting[0].checked = true
 
     const [userInformation, setUserInformation] = useState({
+        userId: 1,
         userLocation: "Location",
         location: createFiltersFromDB(locationFiltersFromDB),
         userPicture: null
@@ -48,13 +50,13 @@ function App() {
 
     return (
         <div className="App">
-            <AppContext.Provider value={{filters, setFilter}}>
+            <AppContext.Provider value={{filters, setFilter, userInformation}}>
                 <BrowserRouter>
                     <NavigationMenu/>
                     <Routes>
                         <Route path={"/profile"} element={<Profile userInformation={userInformation}/>}/>
                         <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
-                        <Route path={"/messages"}/>
+                        <Route path={"/messages"} element={<Messages/>}/>
                         <Route path={"/tasks"}/>
                         <Route path={"/calendar"}/>
                         <Route path={"/recipes"}/>
