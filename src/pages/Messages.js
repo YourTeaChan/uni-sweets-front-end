@@ -1,13 +1,9 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Chat} from "../components/Chat";
 import {ChatWindow} from "../components/ChatWindow";
 
 export const Messages = () => {
     const [activeChat, setActiveChat] = useState(null)
-
-    useEffect(() => {
-        console.log(activeChat)
-    }, [activeChat])
 
     const message1 = {
         userId: 2,
@@ -48,10 +44,6 @@ export const Messages = () => {
             }
         ])
 
-    useEffect(() => {
-        console.log(chats)
-    }, [chats])
-
     return (
         <div
             className="messages-wrapper"
@@ -62,14 +54,14 @@ export const Messages = () => {
             }}
         >
             <div className="messages-content">
-                <div className="chat-list">
+                <div className={`chat-list ${activeChat === null ? "" : "hidden"}`}>
                     {
                         chats.map((chat, index) => {
                             return <Chat key={index} chat={chat} activeChat={activeChat} setActiveChat={setActiveChat}/>
                         })
                     }
                 </div>
-                <ChatWindow activeChat={activeChat} chats={chats} setChats={setChats}/>
+                <ChatWindow activeChat={activeChat} setActiveChat={setActiveChat} chats={chats} setChats={setChats}/>
             </div>
         </div>
     )

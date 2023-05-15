@@ -37,7 +37,7 @@ export const Announcements = (props) => {
                         <div className="announcements-filters-title">
                             Filters
                         </div>
-                        <div className="close-button" onClick={()=>setOpenFilters(false)}>
+                        <div className="icon-button" onClick={()=>setOpenFilters(false)}>
                             <CloseIcon/>
                         </div>
                     </div>

@@ -74,7 +74,7 @@ export const Notifications = (props) => {
         <div className={`notifications-wrapper ${props.visible ? "visible" : ""}`}>
             <div className="notifications-header">
                 <div className="notifications-title">Notifications</div>
-                <div className="close-button" onClick={() => props.setVisible(!props.visible)}>
+                <div className="icon-button" onClick={() => props.setVisible(!props.visible)}>
                     <CloseIcon/>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import {useContext, useEffect, useRef, useState} from "react";
 import {AppContext} from "../App";
 import {Message} from "./Message";
+import {ReactComponent as PrevIcon} from "../images/svg/prev-icon.svg";
 import {ReactComponent as GalleryIcon} from "../images/svg/gallery-icon.svg";
 import {ReactComponent as SendIcon} from "../images/svg/send-icon.svg";
 
@@ -36,6 +37,7 @@ export const ChatWindow = (props) => {
             const chatWindow = document.querySelector(".chat-window-messages")
             setNewMessage("")
             ref.current.style.height = "auto"
+            ref.current.focus()
             setTimeout(() => chatWindow.scrollTop = chatWindow.scrollHeight, 0)
         }
     }
@@ -44,6 +46,18 @@ export const ChatWindow = (props) => {
         <>
             {props.activeChat &&
                 <div className="chat-window">
+                    <div className="chat-header-wrapper">
+                        <div className="chat-header">
+                            <div className="chat-header-content">
+                                <div className="icon-button" onClick={() => props.setActiveChat(null)}>
+                                    <PrevIcon/>
+                                </div>
+                                <div className="chat-header-username">
+                                    Username
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="chat-window-messages">
                         {
                             props.activeChat.messages.map((message, index) =>
@@ -52,12 +66,13 @@ export const ChatWindow = (props) => {
                                     type={message.userId === userInformation.userId ? "sender" : ""}
                                     message={message.messageContent}
                                     time={message.messageTime}
+                                    sender={message.userId === userInformation.userId}
                                 />
                             )
                         }
                     </div>
                     <div className="chat-window-input-bar">
-                        <div className="image-input-button">
+                        <div className="icon-button">
                             <GalleryIcon/>
                         </div>
                         <textarea
@@ -70,7 +85,7 @@ export const ChatWindow = (props) => {
                                 setNewMessage(event.target.value)
                             }}
                             onKeyDown={(event) => {
-                                if (event.key === "Enter" && !event.shiftKey) {
+                                if (event.key === "Enter" && event.shiftKey) {
                                     handleNewMessage()
                                     event.preventDefault()
                                 }
@@ -82,7 +97,7 @@ export const ChatWindow = (props) => {
                             }}
                         />
                         <div
-                            className="send-button"
+                            className="icon-button"
                             onClick={handleNewMessage}
                         >
                             <SendIcon/>
