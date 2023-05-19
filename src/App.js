@@ -6,15 +6,17 @@ import {Profile} from "./pages/Profile";
 import {Announcements} from "./pages/Announcements";
 import {Messages} from "./pages/Messages";
 import {Settings} from "./pages/Settings";
+import {SignUpSignIn} from "./pages/SignUpSignIn";
 
 export const AppContext = createContext(null)
 
 function App() {
+    const [isAuthorized, setAuthorized] = useState(false)
     const [theme, setTheme] = useState("green")
-    const dessertFiltersFromDB = ["#cake", "#cupcake", "#cookie"]
-    const locationFiltersFromDB = ["Lviv", "Kyiv", "Lutsk", "Rivne", "Ternopil", "Kharkiv"]
-    const dateFiltersFromDB = ["All time", "Today", "Last week"]
-    const sortingFromDB = ["First new", "First old"]
+    const dessertFiltersFromDB = ["#торт", "#капкейк", "#печиво"]
+    const locationFiltersFromDB = ["Львів", "Київ", "Луцьк", "Рівне", "Тернопіль", "Харків"]
+    const dateFiltersFromDB = ["Весь час", "Сьогодні", "Минулий тиждень"]
+    const sortingFromDB = ["Спочатку нові", "Спочатку старі"]
 
     const createFiltersFromDB = (filters) => {
         return filters.map((value, index) => {
@@ -30,7 +32,7 @@ function App() {
 
     const [userInformation, setUserInformation] = useState({
         userId: 1,
-        userLocation: "Location",
+        userLocation: "Місто",
         location: createFiltersFromDB(locationFiltersFromDB),
         userPicture: null
     })
@@ -52,16 +54,20 @@ function App() {
         <div className="App">
             <AppContext.Provider value={{filters, setFilter, userInformation}}>
                 <BrowserRouter>
-                    <NavigationMenu/>
+                    {isAuthorized && <NavigationMenu/>}
                     <Routes>
-                        <Route path={"/profile"} element={<Profile userInformation={userInformation}/>}/>
-                        <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
-                        <Route path={"/messages"} element={<Messages/>}/>
-                        <Route path={"/tasks"}/>
-                        <Route path={"/calendar"}/>
-                        <Route path={"/recipes"}/>
-                        <Route path={"/settings"}
-                               element={<Settings userInformation={userInformation} setUserInformation={setUserInformation} theme={theme} setTheme={setTheme}/>}/>
+                        {!isAuthorized ? (<Route path={"/"} element={<SignUpSignIn setSignInSignUpPage={setAuthorized}/>}/>) :
+                            (
+                                <>
+                                    <Route path={"/profile"} element={<Profile userInformation={userInformation}/>}/>
+                                    <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
+                                    <Route path={"/messages"} element={<Messages/>}/>
+                                    <Route path={"/tasks"}/>
+                                    <Route path={"/settings"} element={<Settings userInformation={userInformation}
+                                                                                 setUserInformation={setUserInformation} theme={theme} setTheme={setTheme}/>}/>
+                                </>
+                            )
+                        }
                     </Routes>
                 </BrowserRouter>
             </AppContext.Provider>

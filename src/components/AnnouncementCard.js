@@ -21,7 +21,7 @@ export const AnnouncementCard = (props) => {
                     </div>
                     <div className="announcement-card-client-information-location">
                         <LocationIcon/>
-                        City
+                        Місто
                     </div>
                     <div className="announcement-card-client-information-date">
                         <ClockIcon/>
@@ -33,14 +33,15 @@ export const AnnouncementCard = (props) => {
                 </div>
                 <div className="announcement-card-order-information">
                     <div className="announcement-card-order-information-title">
-                        Title Title Title Title Title Title Title Title Title
+                        Заголовок ... заголовок ... заголовок ... заголовок ... заголовок
                     </div>
                     <div className="announcement-card-order-information-description">
-                        Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description
+                        Опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ... опис ...
+                        опис ... опис ... опис ... опис
                     </div>
                     <div className="announcement-card-order-information-dessert-type">
                         <CakeIcon/>
-                        #cake #cupcake #cookie
+                        #торт #капкейк #печиво
                     </div>
                 </div>
             </div>

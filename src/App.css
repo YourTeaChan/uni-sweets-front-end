@@ -165,6 +165,89 @@ path, svg {
 
 /*---------- the end of icon button ----------*/
 
+/*---------- inputs ----------*/
+
+.input {
+    height: 30px;
+    width: calc(100% - 22px);
+    border: var(--font-and-icons-color) 1px solid;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-family: 'Marmelad', sans-serif;
+    color: var(--font-and-icons-color);
+}
+
+.password-input {
+    display: flex;
+    position: relative;
+    align-items: center;
+    user-select: none;
+}
+
+.password-input .icon-button {
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+}
+
+.text-area {
+    resize: none;
+    width: calc(100% - 22px);
+    border: var(--font-and-icons-color) 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: 'Marmelad', sans-serif;
+    color: var(--font-and-icons-color);
+}
+
+.text-area::-webkit-scrollbar {
+    display: none;
+}
+
+/*---------- the end of inputs ----------*/
+
+/*---------- switch ----------*/
+.switch {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.switch.is-pastry {
+    background-color: white;
+}
+
+.slider {
+    display: flex;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: var(--main-color);
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.switch.is-pastry .slider {
+    transform: translateX(100%);
+}
+
+.switch-label {
+    width: 50%;
+    text-align: center;
+    color: var(--font-and-icons-color);
+    font-size: 14px;
+    z-index: 1;
+}
+
+/*---------- the end of switch ----------*/
+
 /*---------- background blur ----------*/
 
 .background-blur {
@@ -313,6 +396,162 @@ path, svg {
 }
 
 /*---------- the end of navigation menu ----------*/
+
+/*---------- sign in sign up windows ----------*/
+
+.sign-in-sign-up-card-logo,
+.sign-in-sign-up-card-buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-sign-up-card-logo {
+    margin-top: 40px;
+}
+
+.sign-in-sign-up-button {
+    display: flex;
+    height: 50px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+}
+
+.sign-in-sign-up-button:hover {
+    background-color: var(--hover-color);
+    transition: 0.2s;
+}
+
+.sign-in-sign-up-button:active {
+    background-color: var(--active-color);
+}
+
+.sign-in-sign-up-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 250px
+}
+
+.default-sign-in-sign-up-window-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity 0.3s;
+}
+
+.default-sign-in-sign-up-window-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.default-sign-in-sign-up-window-wrapper.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.unicorn-logo {
+    width: 200px;
+}
+
+.uni-sweets-logo {
+    width: 300px;
+}
+
+.sign-in-sign-up-window-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: opacity 1s;
+}
+
+.sign-in-sign-up-window-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.sign-in-sign-up-window-wrapper.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sign-in-sign-up-window-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-in-sign-up-window-header .uni-sweets-logo {
+    width: 150px;
+}
+
+.sign-in-title {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-title .unicorn-logo {
+    width: 120px;
+}
+
+.sign-in-sign-up-window-main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.role-slider {
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+    border: var(--font-and-icons-color) 1px solid;
+    border-radius: 10px;
+}
+
+.role-client,
+.role-pastry {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*---------- the end of sign in sign up windows ----------*/
 
 /*---------- comment ----------*/
 
@@ -765,9 +1004,6 @@ path, svg {
 .chat-new-messages-sign {
     height: 10px;
     width: 10px;
-    /*padding: 3px;*/
-    /*font-size: 14px;*/
-    /*text-align: center;*/
     background-color: var(--blur-color);
     border-radius: 50%;
 }
@@ -780,7 +1016,6 @@ path, svg {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    /*row-gap: 10px;*/
     width: 80%;
 }
 
@@ -815,7 +1050,6 @@ path, svg {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    /*justify-content: flex-end;*/
     row-gap: 10px;
     padding: 0 10px;
     overflow-y: scroll;
@@ -895,7 +1129,8 @@ path, svg {
     background-color: var(--passive-color);
     border-radius: 50%;
 }
-.message-user-picture img{
+
+.message-user-picture img {
     overflow: hidden;
     border-radius: 50%;
 }
@@ -938,6 +1173,41 @@ path, svg {
 /*========================= the end of components =========================*/
 
 /*========================= pages =========================*/
+
+/*---------- sign in sign up page ----------*/
+
+.sign-in-sign-up-wrapper {
+    display: flex;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+}
+
+.sign-in-sign-up-card {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.sign-in-sign-up-card-content {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: calc(100% - 80px);
+    justify-content: center;
+    margin: 40px;
+    overflow: hidden;
+}
+
+/*---------- the end of sign in sign up page ----------*/
 
 /*---------- profile page ----------*/
 
@@ -1205,29 +1475,6 @@ path, svg {
     margin: 40px;
 }
 
-.input {
-    width: 100%;
-    border: var(--font-and-icons-color) 1px solid;
-    border-radius: 10px;
-    padding: 0 10px;
-    font-family: 'Marmelad', sans-serif;
-    color: var(--font-and-icons-color);
-}
-
-.text-area {
-    resize: none;
-    width: calc(100% - 22px);
-    border: var(--font-and-icons-color) 1px solid;
-    border-radius: 10px;
-    padding: 10px;
-    font-family: 'Marmelad', sans-serif;
-    color: var(--font-and-icons-color);
-}
-
-.text-area::-webkit-scrollbar {
-    display: none;
-}
-
 .profile-settings {
     display: flex;
     flex-direction: column;
@@ -1274,7 +1521,6 @@ path, svg {
 .profile-main-settings-user-picture:hover {
     opacity: 0.9;
 }
-
 
 .profile-main-settings-user-picture img {
     overflow: hidden;
@@ -1421,7 +1667,7 @@ path, svg {
 
 /*========================= adaptive =========================*/
 
-@media screen and (max-width: 1433px) {
+@media screen and (max-width: 1472px) {
     /*---------- announcements ----------*/
     .announcements-list {
         margin-top: 155px;
@@ -1483,7 +1729,7 @@ path, svg {
     /*---------- the end of profile ----------*/
 }
 
-@media screen and (max-width: 828px) {
+@media screen and (max-width: 889px) {
     /*---------- announcements ----------*/
     .announcements-list {
         margin-top: 215px;
@@ -1675,6 +1921,31 @@ path, svg {
 }
 
 @media screen and (max-width: 550px) {
+    /*---------- sign in sign up----------*/
+    .sign-in-sign-up-card {
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .sign-in-sign-up-card-content {
+        width: calc(100% - 40px);
+        margin: 20px 20px 150px 20px;
+    }
+
+    .sign-in-sign-up-window-wrapper {
+        row-gap: 100px;
+    }
+
+    .sign-in-sign-up-input-wrapper {
+        width: 100%;
+    }
+
+    .sign-in-sign-up-card-logo {
+        margin-top: 100px;
+    }
+
+    /*---------- the end of sign in sign up ----------*/
     /*---------- navigation menu ----------*/
     .mobile-top-bar {
         display: flex;
@@ -1925,6 +2196,20 @@ path, svg {
 }
 
 @media screen and (max-width: 380px) {
+    /*---------- sign in sign up ----------*/
+    .sign-in-sign-up-card-content {
+        margin: 10px 10px 70px 10px;
+    }
+
+    .sign-in-sign-up-window-wrapper {
+        row-gap: 50px;
+    }
+
+    .sign-in-sign-up-card-logo {
+        margin-top: 50px;
+    }
+
+    /*---------- the end of sign in sign up ----------*/
     /*---------- profile ----------*/
     .profile-content {
         margin: 50px 10px 0 10px;

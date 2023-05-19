@@ -8,9 +8,9 @@ export const Notifications = (props) => {
             date: "07/05/2023",
             notificationsList: [
                 {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }
             ]
         },
@@ -18,13 +18,13 @@ export const Notifications = (props) => {
             date: "06/05/2023",
             notificationsList: [
                 {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }, {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }
             ]
         },
@@ -32,17 +32,17 @@ export const Notifications = (props) => {
             date: "05/05/2023",
             notificationsList: [
                 {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }, {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }, {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }
             ]
         },
@@ -50,21 +50,21 @@ export const Notifications = (props) => {
             date: "04/05/2023",
             notificationsList: [
                 {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }, {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }, {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }, {
-                    username: "username",
+                    username: "Клієнт",
                     userPicture: "",
-                    notificationText: "lived a comment"
+                    notificationText: "залишив коментар"
                 }
             ]
         }
@@ -73,7 +73,7 @@ export const Notifications = (props) => {
     return (
         <div className={`notifications-wrapper ${props.visible ? "visible" : ""}`}>
             <div className="notifications-header">
-                <div className="notifications-title">Notifications</div>
+                <div className="notifications-title">Сповіщення</div>
                 <div className="icon-button" onClick={() => props.setVisible(!props.visible)}>
                     <CloseIcon/>
                 </div>

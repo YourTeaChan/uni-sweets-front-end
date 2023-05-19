@@ -9,7 +9,7 @@ export const Comment = () => {
                         <div className="comment-header-user-picture"></div>
                     </div>
                     <div className="comment-header-username">
-                        User name
+                        Клієнт
                     </div>
                 </div>
                 <div className="comment-header-rating-and-date">
@@ -23,8 +23,8 @@ export const Comment = () => {
                 </div>
             </div>
             <div className="comment-body">
-                Comment text ... comment text ... comment text ... comment text ... comment text ... comment text ... comment text
-                ... comment text ... comment text ... comment text ... comment text ... comment text
+                Текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ...
+                ... текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ...
             </div>
         </div>
     )

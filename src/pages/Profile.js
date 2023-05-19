@@ -11,7 +11,7 @@ import {ReactComponent as TikTokIcon} from "../images/svg/tiktok-icon.svg";
 import {ReactComponent as SortIcon} from "../images/svg/sort-icon.svg";
 
 export const Profile = (props) => {
-    const sortingFromDB = ["First new", "First old", "First good", "First bad"]
+    const sortingFromDB = ["Спочатку нові", "Спочатку старі", "Спочатку хороші", "Спочатку погані"]
     const sorting = sortingFromDB.map((value, index) => {
         return {id: index, title: value, checked: false}
     })
@@ -40,10 +40,10 @@ export const Profile = (props) => {
                             </div>
                             <div className="profile-main-part-user-information-right">
                                 <div className="profile-main-part-user-name">
-                                    Tea Chan
+                                    Тетяна Валькова
                                 </div>
                                 <div className="profile-main-part-user-location">
-                                    <LocationIcon/> Lviv
+                                    <LocationIcon/> Львів
                                 </div>
                                 <div className="profile-main-part-user-socials">
                                     <InstagramIcon/>
@@ -61,17 +61,16 @@ export const Profile = (props) => {
                             </div>
                         </div>
                         <div className="profile-main-part-user-about">
-                            About me^^
-                            Info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ...
-                            info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ... info ...
+                            Текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ...
+                            текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ...
                         </div>
                     </div>
                     <div className="pictures-comments-lists-switcher-wrapper">
                         <div className={`pictures-comments-lists-switcher ${commentsVisible ? "" : "active"}`} onClick={() => setCommentsVisible(false)}>
-                            Pictures
+                            Фотографії
                         </div>
                         <div className={`pictures-comments-lists-switcher ${commentsVisible ? "active" : ""}`} onClick={() => setCommentsVisible(true)}>
-                            Comments
+                            Відгуки
                         </div>
                     </div>
                 </div>
@@ -89,8 +88,8 @@ export const Profile = (props) => {
                     </div>
                     <div className={`profile-comments ${commentsVisible ? "" : "non-visible"}`}>
                         <div className="profile-comments-count-and-sorting">
-                            7 comments
-                            <Dropdown name="Sort" icon={<SortIcon/>} id="sort" filters={sort} setFilter={setSort} multipleChoice={false}/>
+                            7 відгуків
+                            <Dropdown name="Сортування" icon={<SortIcon/>} id="sort" filters={sort} setFilter={setSort} multipleChoice={false}/>
                         </div>
                         <div className="profile-comments-list">
                             <Comment/>

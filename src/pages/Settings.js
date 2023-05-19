@@ -11,7 +11,7 @@ export const Settings = (props) => {
             <div className="settings-content">
                 <div className="profile-settings">
                     <div className="profile-settings-title">
-                        Profile settings
+                        Налаштування профілю
                     </div>
                     <div className="profile-main-settings">
                         <div className="profile-main-settings-user-picture-wrapper">
@@ -34,16 +34,16 @@ export const Settings = (props) => {
                                           setFilter={props.setUserInformation} multipleChoice={false}/>
                             </div>
                             <div className="profile-main-settings-username">
-                                <input className="input" type="text" placeholder="First name"/>
+                                <input className="input" type="text" placeholder="Ім'я"/>
                             </div>
                             <div className="profile-main-settings-username">
-                                <input className="input" type="text" placeholder="Last name"/>
+                                <input className="input" type="text" placeholder="Прізвище"/>
                             </div>
                         </div>
                     </div>
                     <div className="profile-socials-settings">
                         <div className="profile-socials-settings-title">
-                            Social networks
+                            Соціальні мережі
                         </div>
                         <div className="profile-socials-settings-wrapper">
                             <div className="profile-socials-settings-links-wrapper">
@@ -69,17 +69,17 @@ export const Settings = (props) => {
                         </div>
                         <div className="profile-main-settings-user-about-wrapper">
                             <div className="profile-main-settings-user-about-title">
-                                A few words about yourself
+                                Кілька слів про себе
                             </div>
                             <div className="profile-main-settings-user-about">
-                                <textarea className="text-area" placeholder="About..." rows={3} maxLength={150}/>
+                                <textarea className="text-area" placeholder="Про себе..." rows={3} maxLength={150}/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="theme-preferences-settings">
                     <div className="theme-preferences-settings-title">
-                        Theme preferences settings
+                        Зміна теми
                     </div>
                     <div className="theme-preferences-buttons">
                         <div id="green-theme-button" className={`theme-preference-button ${props.theme === "green" ? "active" : ""}`} onClick={() => props.setTheme("green")}>

@@ -13,7 +13,7 @@ import {ReactComponent as SortIcon} from "../images/svg/sort-icon.svg";
 import {ReactComponent as LocationIcon} from "../images/svg/location-icon.svg";
 
 export const Announcements = (props) => {
-    const announcements = Array(30).fill("User name")
+    const announcements = Array(30).fill("Клієнт")
 
     const [filtersAreOpen, setOpenFilters] = useState(false)
 
@@ -22,7 +22,7 @@ export const Announcements = (props) => {
             <div className="announcements-top-bar">
                 <div className={`announcements-filters-button ${filtersAreOpen ? "non-visible" : ""}`} onClick={() => setOpenFilters(true)}>
                     <FilterIcon/>
-                    Filters
+                    Фільтри
                     <ArrowRightIcon/>
                     <div className="announcements-filters-button-chosen-filters">
                         <CakeIcon/>
@@ -35,19 +35,19 @@ export const Announcements = (props) => {
                 <div className={`announcements-filters-wrapper ${filtersAreOpen ? "open" : ""}`}>
                     <div className="announcements-filters-header">
                         <div className="announcements-filters-title">
-                            Filters
+                            Фільтри
                         </div>
-                        <div className="icon-button" onClick={()=>setOpenFilters(false)}>
+                        <div className="icon-button" onClick={() => setOpenFilters(false)}>
                             <CloseIcon/>
                         </div>
                     </div>
                     <div className="announcements-filters-content">
-                        <Dropdown name="Dessert type" icon={<CakeIcon/>} id="dessert" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
-                        <Dropdown name="Location" icon={<LocationIcon/>} id="location" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
-                        <Dropdown name="Date" icon={<ClockIcon/>} id="date" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
-                        <Dropdown name="Sort" icon={<SortIcon/>} id="sort" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
-                        <CheckboxFilter name="Only quick order" icon={<FlashIcon/>} id="quick" filters={props.filters} setFilter={props.setFilter}/>
-                        <CheckboxFilter name="Only favorites" icon={<HeartIcon/>} id="favorites" filters={props.filters} setFilter={props.setFilter}/>
+                        <Dropdown name="Тип десерту" icon={<CakeIcon/>} id="dessert" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
+                        <Dropdown name="Місто" icon={<LocationIcon/>} id="location" filters={props.filters} setFilter={props.setFilter} multipleChoice={true}/>
+                        <Dropdown name="Дата" icon={<ClockIcon/>} id="date" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
+                        <Dropdown name="Сортування" icon={<SortIcon/>} id="sort" filters={props.filters} setFilter={props.setFilter} multipleChoice={false}/>
+                        <CheckboxFilter name="Лише термінові" icon={<FlashIcon/>} id="quick" filters={props.filters} setFilter={props.setFilter}/>
+                        <CheckboxFilter name="Лише улюблені" icon={<HeartIcon/>} id="favorites" filters={props.filters} setFilter={props.setFilter}/>
                     </div>
                 </div>
             </div>

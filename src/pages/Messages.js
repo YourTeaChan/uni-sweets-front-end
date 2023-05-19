@@ -8,14 +8,14 @@ export const Messages = () => {
     const message1 = {
         userId: 2,
         messageType: "text",
-        messageContent: "Text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1 text 1",
+        messageContent: "Текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ... текст ...",
         messageTime: "14:43"
     }
 
     const message2 = {
         userId: 3,
         messageType: "text",
-        messageContent: "Text 2 ... text 2 ...",
+        messageContent: "Текст ... текст ... текст ... текст ...",
         messageTime: "14:41"
     }
 
@@ -23,7 +23,7 @@ export const Messages = () => {
         [
             {
                 chatId: 2,
-                username: "Username 1",
+                username: "Клієнт 1",
                 messages: [
                     message1,
                     message1,
@@ -35,7 +35,7 @@ export const Messages = () => {
             },
             {
                 chatId: 3,
-                username: "Username 2",
+                username: "Клієнт 2",
                 messages: [
                     message2,
                     message2,

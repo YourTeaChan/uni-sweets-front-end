@@ -53,7 +53,7 @@ export const ChatWindow = (props) => {
                                     <PrevIcon/>
                                 </div>
                                 <div className="chat-header-username">
-                                    Username
+                                    Клієнт
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@ export const ChatWindow = (props) => {
                         </div>
                         <textarea
                             className="chat-window-input"
-                            placeholder="Write a message..."
+                            placeholder="Напишіть повідомлення..."
                             rows={1}
                             ref={ref}
                             onInput={handleInput}

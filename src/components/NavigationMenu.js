@@ -42,7 +42,7 @@ export const NavigationMenu = () => {
                         <NavigationMenuLink toPage={"/profile"}>
                             <div className="menu-item">
                                 <ProfileIcon/>
-                                <p className="menu-item-title">Profile</p>
+                                <p className="menu-item-title">Профіль</p>
                             </div>
                         </NavigationMenuLink>
                     </div>
@@ -50,7 +50,7 @@ export const NavigationMenu = () => {
                         <NavigationMenuLink toPage={"/announcements"}>
                             <div className="menu-item">
                                 <AnnouncementsIcon/>
-                                <p className="menu-item-title">Announcements</p>
+                                <p className="menu-item-title">Оголошення</p>
                             </div>
                         </NavigationMenuLink>
                         <div className="menu-item-wrapper">
@@ -58,14 +58,14 @@ export const NavigationMenu = () => {
                                 setNotificationVisible(!notificationVisible)
                             }}>
                                 <NotificationsIcon/>
-                                <p className="menu-item-title">Notifications</p>
+                                <p className="menu-item-title">Сповіщення</p>
                             </div>
                             <Notifications visible={notificationVisible} setVisible={setNotificationVisible}/>
                         </div>
                         <NavigationMenuLink toPage={"/messages"}>
                             <div className="menu-item">
                                 <MessagesIcon/>
-                                <p className="menu-item-title">Messages</p>
+                                <p className="menu-item-title">Повідомлення</p>
                             </div>
                         </NavigationMenuLink>
                     </div>
@@ -73,27 +73,27 @@ export const NavigationMenu = () => {
                         <NavigationMenuLink toPage={"/tasks"}>
                             <div className="menu-item">
                                 <TasksIcon/>
-                                <p className="menu-item-title">Tasks</p>
+                                <p className="menu-item-title">Завдання</p>
                             </div>
                         </NavigationMenuLink>
-                        <NavigationMenuLink toPage={"/calendar"}>
-                            <div className="menu-item">
-                                <CalendarIcon/>
-                                <p className="menu-item-title">Calendar</p>
-                            </div>
-                        </NavigationMenuLink>
-                        <NavigationMenuLink toPage={"/recipes"}>
-                            <div className="menu-item">
-                                <RecipesIcon/>
-                                <p className="menu-item-title">Recipes</p>
-                            </div>
-                        </NavigationMenuLink>
+                        {/*<NavigationMenuLink toPage={"/calendar"}>*/}
+                        {/*    <div className="menu-item">*/}
+                        {/*        <CalendarIcon/>*/}
+                        {/*        <p className="menu-item-title">Календар</p>*/}
+                        {/*    </div>*/}
+                        {/*</NavigationMenuLink>*/}
+                        {/*<NavigationMenuLink toPage={"/recipes"}>*/}
+                        {/*    <div className="menu-item">*/}
+                        {/*        <RecipesIcon/>*/}
+                        {/*        <p className="menu-item-title">Рецепти</p>*/}
+                        {/*    </div>*/}
+                        {/*</NavigationMenuLink>*/}
                     </div>
                     <div className="menu-group">
                         <NavigationMenuLink toPage={"/settings"}>
                             <div className="menu-item">
                                 <SettingsIcon/>
-                                <p className="menu-item-title">Settings</p>
+                                <p className="menu-item-title">Налаштування</p>
                             </div>
                         </NavigationMenuLink>
                     </div>
