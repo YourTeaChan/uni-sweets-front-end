@@ -16,6 +16,9 @@ export const Dropdown = (props) => {
         return () => document.body.removeEventListener("click", closeFilter)
     }, [isOpen, props.id])
 
+    // useEffect(()=>{
+    //     console.log(props.filters)
+    // },[props.filters])
     return (
         <div id={`dropdown-filter-${props.id}`}
              className={`dropdown-filter ${isOpen ? "open" : ""}`}>
@@ -26,7 +29,7 @@ export const Dropdown = (props) => {
                     {props.icon}
                 </div>
                 <div className="dropdown-filter-name">
-                    {props.name}
+                    {props.name ? props.name : props.defaultName}
                 </div>
                 <div className={`dropdown-filter-arrow-${isOpen ? "up" : "down"}`}>
                     <ArrowDownIcon className={"arrow-down"}/>
@@ -34,7 +37,7 @@ export const Dropdown = (props) => {
             </div>
             {
                 <div className={`dropdown-filter-content ${isOpen ? "open" : ""}`}>
-                    {props.filters[props.id].map((value, index, array) =>
+                    {props.filters && props.filters.map((value, index, array) =>
                         <div key={index} className="dropdown-filter-content-item" onClick={() => {
                             if (props.multipleChoice) {
                                 value.checked = !value.checked
@@ -43,7 +46,7 @@ export const Dropdown = (props) => {
                                     value_.checked = index_ === index;
                                 })
                             }
-                            props.setFilter({...props.filters})
+                            props.setFilter([...props.filters])
                         }}>
                             <input className="checkbox" checked={value.checked} type="checkbox" readOnly={true}/>
                             {value.title}

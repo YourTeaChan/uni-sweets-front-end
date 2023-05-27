@@ -7,7 +7,7 @@ export const Message = (props) => {
     return (
         <div className={`user-and-message-wrapper ${props.type}`}>
             <div className="message-user-picture">
-                <img src={props.sender && userInformation.userPicture && URL.createObjectURL(userInformation.userPicture)} alt={""}/>
+                <img src={props.sender?.userPicture?.pictureURL} alt={""}/>
             </div>
             <div className="message-wrapper">
                 <div className="message-content">
@@ -15,7 +15,7 @@ export const Message = (props) => {
                         {props.message}
                     </div>
                     <div className="message-time">
-                        {props.time}
+                        {new Date(props.time).toLocaleTimeString()}
                     </div>
                 </div>
             </div>

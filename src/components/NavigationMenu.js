@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {NavigationMenuLink} from "./NavigationMenuLink";
 import {BackgroundBlur} from "./BackgroundBlur";
 import {Notifications} from "./Notifications";
@@ -8,11 +8,11 @@ import {ReactComponent as AnnouncementsIcon} from "../images/svg/announcements-i
 import {ReactComponent as NotificationsIcon} from "../images/svg/notifications-icon.svg";
 import {ReactComponent as MessagesIcon} from "../images/svg/messages-icon.svg";
 import {ReactComponent as TasksIcon} from "../images/svg/tasks-icon.svg";
-import {ReactComponent as CalendarIcon} from "../images/svg/calendar-icon.svg";
-import {ReactComponent as RecipesIcon} from "../images/svg/recipes-icon.svg";
 import {ReactComponent as SettingsIcon} from "../images/svg/settings-icon.svg";
+import {AppContext} from "../App";
 
 export const NavigationMenu = () => {
+    const {userInformation, setUserInformation} = useContext(AppContext)
     const [expandedState, setExpandedState] = useState(false);
     const [notificationVisible, setNotificationVisible] = useState(false)
 
@@ -39,7 +39,7 @@ export const NavigationMenu = () => {
                         </div>
                     </div>
                     <div className="menu-group">
-                        <NavigationMenuLink toPage={"/profile"}>
+                        <NavigationMenuLink toPage={`/profile/${userInformation?.username}`}>
                             <div className="menu-item">
                                 <ProfileIcon/>
                                 <p className="menu-item-title">Профіль</p>
@@ -76,18 +76,6 @@ export const NavigationMenu = () => {
                                 <p className="menu-item-title">Завдання</p>
                             </div>
                         </NavigationMenuLink>
-                        {/*<NavigationMenuLink toPage={"/calendar"}>*/}
-                        {/*    <div className="menu-item">*/}
-                        {/*        <CalendarIcon/>*/}
-                        {/*        <p className="menu-item-title">Календар</p>*/}
-                        {/*    </div>*/}
-                        {/*</NavigationMenuLink>*/}
-                        {/*<NavigationMenuLink toPage={"/recipes"}>*/}
-                        {/*    <div className="menu-item">*/}
-                        {/*        <RecipesIcon/>*/}
-                        {/*        <p className="menu-item-title">Рецепти</p>*/}
-                        {/*    </div>*/}
-                        {/*</NavigationMenuLink>*/}
                     </div>
                     <div className="menu-group">
                         <NavigationMenuLink toPage={"/settings"}>
@@ -127,7 +115,7 @@ export const NavigationMenu = () => {
                         <NavigationMenuLink toPage={"/messages"} onClick={() => setNotificationVisible(false)}>
                             <MessagesIcon/>
                         </NavigationMenuLink>
-                        <NavigationMenuLink toPage={"/profile"} onClick={() => setNotificationVisible(false)}>
+                        <NavigationMenuLink toPage={`/profile/${userInformation?.username}`} onClick={() => setNotificationVisible(false)}>
                             <ProfileIcon/>
                         </NavigationMenuLink>
                     </div>

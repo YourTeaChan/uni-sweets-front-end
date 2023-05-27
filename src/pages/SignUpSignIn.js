@@ -5,7 +5,7 @@ import {SignUpWindow} from "../components/SignUpWindow";
 
 export const SignUpSignIn = (props) => {
     const [state, setState] = useState("default")
-
+    props.setMenuVisibility(false)
     return (
         <div className="sign-in-sign-up-wrapper">
             <div className="sign-in-sign-up-card">

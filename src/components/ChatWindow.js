@@ -1,12 +1,14 @@
 import {useContext, useEffect, useRef, useState} from "react";
 import {AppContext} from "../App";
+import axios from "axios";
 import {Message} from "./Message";
 import {ReactComponent as PrevIcon} from "../images/svg/prev-icon.svg";
 import {ReactComponent as GalleryIcon} from "../images/svg/gallery-icon.svg";
 import {ReactComponent as SendIcon} from "../images/svg/send-icon.svg";
 
 export const ChatWindow = (props) => {
-    const {userInformation} = useContext(AppContext)
+    const {userInformation, authInfo} = useContext(AppContext)
+    const interlocutor = props.activeChat?.firstUser.username === userInformation?.username ? props.activeChat?.secondUser : props.activeChat?.firstUser;
     const [newMessage, setNewMessage] = useState("")
     const ref = useRef(null)
 
@@ -27,12 +29,25 @@ export const ChatWindow = (props) => {
     const handleNewMessage = () => {
         if (newMessage.trim() !== "") {
             props.activeChat.messages.push({
-                userId: userInformation.userId,
-                messageType: "text",
-                messageContent: newMessage,
-                messageTime: "14:41"
+                receiverUsername: interlocutor.username,
+                senderUsername: userInformation.username,
+                text: newMessage,
+                time: new Date().toISOString()
             })
             props.setChats([...props.chats])
+            axios.post(
+                `http://192.168.0.106:8080/api/v1/chats/${interlocutor.username}/${userInformation.username}`,
+                {
+                    receiverUsername: interlocutor.username,
+                    senderUsername: userInformation.username,
+                    text: newMessage
+                },
+                {
+                    headers: {
+                        "Authorization": authInfo.token
+                    }
+                }
+            ).then(response => props.setChats(response.data))
             document.querySelector(".chat-window-input").value = ""
             const chatWindow = document.querySelector(".chat-window-messages")
             setNewMessage("")
@@ -53,7 +68,7 @@ export const ChatWindow = (props) => {
                                     <PrevIcon/>
                                 </div>
                                 <div className="chat-header-username">
-                                    Клієнт
+                                    {interlocutor?.firstName + " " + interlocutor?.lastName}
                                 </div>
                             </div>
                         </div>
@@ -63,10 +78,10 @@ export const ChatWindow = (props) => {
                             props.activeChat.messages.map((message, index) =>
                                 <Message
                                     key={index}
-                                    type={message.userId === userInformation.userId ? "sender" : ""}
-                                    message={message.messageContent}
-                                    time={message.messageTime}
-                                    sender={message.userId === userInformation.userId}
+                                    type={message.senderUsername === userInformation.username ? "sender" : ""}
+                                    message={message.text}
+                                    time={message.time}
+                                    sender={message.senderUsername === userInformation.username ? userInformation : interlocutor}
                                 />
                             )
                         }
@@ -85,7 +100,7 @@ export const ChatWindow = (props) => {
                                 setNewMessage(event.target.value)
                             }}
                             onKeyDown={(event) => {
-                                if (event.key === "Enter" && event.shiftKey) {
+                                if (event.key === "Enter" && !event.shiftKey) {
                                     handleNewMessage()
                                     event.preventDefault()
                                 }

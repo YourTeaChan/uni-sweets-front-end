@@ -968,6 +968,14 @@ path, svg {
     border-radius: 50%;
 }
 
+.chat-user-picture img {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+
 .chat-username-and-text {
     display: flex;
     flex-direction: column;
@@ -1152,7 +1160,6 @@ path, svg {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    align-items: flex-end;
     margin: 10px;
 }
 
@@ -1164,6 +1171,7 @@ path, svg {
 }
 
 .message-time {
+    align-self: flex-end;
     font-size: 14px;
     opacity: 0.5;
 }
@@ -1256,6 +1264,7 @@ path, svg {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
+    /*margin-top: 32px;*/
     justify-content: flex-end;
     min-width: max-content;
 }
@@ -1385,17 +1394,6 @@ path, svg {
 
 /*---------- announcement page ----------*/
 
-.announcements-filters-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 10px 20px;
-    padding-left: 50px;
-    column-gap: 30px;
-}
-
 .announcements-wrapper {
     display: flex;
     flex-direction: column;
@@ -1412,6 +1410,16 @@ path, svg {
     z-index: 1;
 }
 
+.announcements-filters-content {
+    display: flex;
+    column-gap: 30px;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 20px;
+    padding-left: 50px;
+}
+
 .announcements-filters-button,
 .announcements-filters-header {
     display: none;
@@ -1426,8 +1434,7 @@ path, svg {
     grid-template-columns: repeat(auto-fit, 500px);
     justify-content: center;
     margin: 90px 20px 20px 20px;
-    row-gap: 20px;
-    column-gap: 20px;
+    gap: 20px;
 }
 
 /*---------- the end of announcements page ----------*/
@@ -1459,6 +1466,66 @@ path, svg {
 }
 
 /*---------- the end of messages page ----------*/
+
+/*---------- tasks page ----------*/
+.tasks-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 92px;
+}
+
+.tasks-top-bar {
+    position: fixed;
+    top: 0;
+    width: calc(100% - 92px);
+    background-color: white;
+    z-index: 1;
+}
+
+.tasks-filters-wrapper {
+    display: flex;
+    column-gap: 30px;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0 10px 10px;
+    padding-left: 50px;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    margin: 90px 20px 20px 20px;
+}
+
+.task-list-todo,
+.task-list-completed {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 500px);
+    justify-content: center;
+    gap: 20px;
+}
+
+.task-list-todo .announcement-card {
+    background-color: var(--active-color);
+}
+
+.task-list-completed .announcement-card {
+    background-color: var(--passive-color);
+}
+
+.task-list-todo .announcement-card:hover,
+.task-list-completed .announcement-card:hover {
+    background-color: var(--hover-color);
+}
+
+.task-list-todo .announcement-card:active,
+.task-list-completed .announcement-card:active {
+    background-color: var(--active-color);
+}
+
+/*---------- the end of tasks page ----------*/
 
 /*---------- settings page ----------*/
 
@@ -2078,7 +2145,6 @@ path, svg {
     }
 
     .profile-main-part-user-picture {
-
         height: 120px;
         width: 120px;
     }
