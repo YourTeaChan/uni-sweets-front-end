@@ -1,74 +1,20 @@
 import {Notification} from "./Notification";
 import {ReactComponent as CloseIcon} from "../images/svg/close-icon.svg";
+import {useContext, useEffect, useState} from "react";
+import {AppContext} from "../App";
+import axios from "axios";
 
 export const Notifications = (props) => {
+    const {authInfo} = useContext(AppContext)
+    const [notifications, setNotifications] = useState([])
 
-    const notifications = [
-        {
-            date: "07/05/2023",
-            notificationsList: [
-                {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }
-            ]
-        },
-        {
-            date: "06/05/2023",
-            notificationsList: [
-                {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }, {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }
-            ]
-        },
-        {
-            date: "05/05/2023",
-            notificationsList: [
-                {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }, {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }, {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }
-            ]
-        },
-        {
-            date: "04/05/2023",
-            notificationsList: [
-                {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }, {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }, {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }, {
-                    username: "Клієнт",
-                    userPicture: "",
-                    notificationText: "залишив коментар"
-                }
-            ]
-        }
-    ]
+
+    useEffect(() => {
+        axios.get(`http://192.168.0.106:8080/api/v1/notifications/${authInfo.username}`)
+            .then(value => {
+                setNotifications(value.data)
+            })
+    }, [authInfo])
 
     return (
         <div className={`notifications-wrapper ${props.visible ? "visible" : ""}`}>
@@ -80,16 +26,8 @@ export const Notifications = (props) => {
             </div>
             <div className="notifications-groups">
                 {
-                    notifications.map((notificationGroup, i) =>
-                        <div className="notification-group" key={i}>
-                            <div className="notification-group-title">{notificationGroup.date}</div>
-                            <div className="notification-group-items">
-                                {
-                                    notificationGroup.notificationsList.map((notification, j) =>
-                                        <Notification key={`${i}${j}`} comment={notification.username + " " + notification.notificationText}/>)
-                                }
-                            </div>
-                        </div>
+                    notifications.map((notification, i) =>
+                        <Notification key={i} notification={notification} setNotifications={setNotifications}/>
                     )
                 }
             </div>

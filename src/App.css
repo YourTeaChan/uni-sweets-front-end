@@ -877,6 +877,7 @@ path, svg {
     row-gap: 10px;
     overflow-y: scroll;
     font-size: 16px;
+    height: 100%;
 }
 
 .notification-group {
@@ -895,9 +896,14 @@ path, svg {
 
 .notification-group-item {
     width: 302px;
-    background-color: var(--main-color);
+    background-color: var(--active-color);
     display: flex;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.notification-group-item.read{
+    background-color: var(--passive-color);
 }
 
 .notification-item-content {
@@ -917,6 +923,12 @@ path, svg {
     height: 50px;
     width: 50px;
     background-color: white;
+    border-radius: 50%;
+}
+
+.notification-item-user-info-pic img{
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
 }
 
@@ -987,9 +999,10 @@ path, svg {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 30ch;
-    max-height: 1em;
+    height: 1.1em;
     font-size: 14px;
     opacity: 0.8;
+    /*height: 20px;*/
 }
 
 .chat-time-and-new-messages-sign {

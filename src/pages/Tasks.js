@@ -11,6 +11,7 @@ export const Tasks = (props) => {
             <div className="tasks-top-bar">
                 <div className="tasks-filters-wrapper">
                     <CheckboxFilter name="До роботи" icon={<TimerIcon/>} id="todo" filters={props.filters} setFilter={props.setFilter}/>
+                    <CheckboxFilter name="Очікують відповіді" icon={<TimerIcon/>} id="waiting" filters={props.filters} setFilter={props.setFilter}/>
                     <CheckboxFilter name="Виконані" icon={<CheckIcon/>} id="completed" filters={props.filters} setFilter={props.setFilter}/>
                 </div>
             </div>

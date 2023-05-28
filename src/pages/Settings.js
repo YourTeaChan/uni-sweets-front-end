@@ -15,9 +15,12 @@ export const Settings = (props) => {
     const [selectedLocation, setSelectedLocation] = useState()
     const [imageFile, setImageFile] = useState()
     useEffect(() => {
-        axios.get("http://192.168.0.106:8080/api/v1/locations").then(value => {
-            setLocations(createFiltersFromDB(value.data, "locationName"))
-        })
+        if (userInformation) {
+            console.log(userInformation)
+            axios.get("http://192.168.0.106:8080/api/v1/locations").then(value => {
+                setLocations(createFiltersFromDB(value.data, "locationName"))
+            })
+        }
     }, [userInformation])
 
     useEffect(() => {
@@ -30,7 +33,7 @@ export const Settings = (props) => {
 
     const createFiltersFromDB = (filters, fieldName) => {
         return filters.map((value, index) => {
-            return {id: index, title: value[fieldName], checked: userInformation?.location[fieldName] === value[fieldName]}
+            return {id: index, title: value[fieldName], checked: userInformation?.location && userInformation?.location[fieldName] === value[fieldName]}
         })
     }
 
@@ -157,19 +160,19 @@ export const Settings = (props) => {
                         const firstName = document.getElementById("settings-user-firstname").value.trim()
                         const lastName = document.getElementById("settings-user-lastname").value.trim()
 
-                        console.log(
-                            {
-                                username: authInfo.username,
-                                firstName: firstName,
-                                lastName: lastName,
-                                instagram: instagram?.length > 0 ? instagram : null,
-                                facebook: facebook?.length > 0 ? facebook : null,
-                                youtube: youtube?.length > 0 ? youtube : null,
-                                tiktok: tiktok?.length > 0 ? tiktok : null,
-                                about: about?.length > 0 ? about : null,
-                                location: selectedLocation
-                            }
-                        )
+                        // alert(
+                        //     {
+                        //         username: authInfo.username,
+                        //         firstName: firstName,
+                        //         lastName: lastName,
+                        //         instagram: instagram?.length > 0 ? instagram : null,
+                        //         facebook: facebook?.length > 0 ? facebook : null,
+                        //         youtube: youtube?.length > 0 ? youtube : null,
+                        //         tiktok: tiktok?.length > 0 ? tiktok : null,
+                        //         about: about?.length > 0 ? about : null,
+                        //         location: selectedLocation
+                        //     }
+                        // )
                         if (imageFile) {
                             const formData = new FormData()
                             formData.append("image", imageFile)

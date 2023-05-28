@@ -17,7 +17,7 @@ function App() {
     const [theme, setTheme] = useState("green")
     const dessertFiltersFromDB = ["#торт", "#капкейк", "#печиво"]
     const locationFiltersFromDB = ["Львів", "Київ", "Луцьк", "Рівне", "Тернопіль", "Харків"]
-    const dateFiltersFromDB = ["Весь час", "Сьогодні", "Минулий тиждень"]
+    const dateFiltersFromDB = ["Весь час", "Сьогодні", "Останні 7 днів"]
     const sortingFromDB = ["Спочатку нові", "Спочатку старі"]
 
     const createFiltersFromDB = (filters, fieldName) => {
@@ -79,13 +79,17 @@ function App() {
                 <BrowserRouter>
                     {menuIsVisible && <NavigationMenu/>}
                     <Routes>
-                        <Route path={"/"} element={<Navigate to={authInfo ? `/profile/${authInfo.username}` : "/auth"}/>}/>
                         <Route path={"/auth"} element={<SignUpSignIn setMenuVisibility={setMenuVisibility}/>}/>
-                        <Route path={"/profile/:username"} element={<Profile userInformation={authInfo}/>}/>
-                        <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
-                        <Route path={"/messages/:username?"} element={<Messages/>}/>
-                        <Route path={"/tasks"} element={<Tasks filters={tasksFilters} setFilter={setTasksFilters}/>}/>
-                        <Route path={"/settings"} element={<Settings userInformation={authInfo} setUserInformation={setAuthInfo} theme={theme} setTheme={setTheme}/>}/>
+                        {authInfo ?
+                            <>
+                                <Route path={"/"} element={<Navigate to={authInfo ? `/profile/${authInfo.username}` : "/auth"}/>}/>
+                                <Route path={"/profile/:username"} element={<Profile userInformation={authInfo}/>}/>
+                                <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
+                                <Route path={"/messages/:username?"} element={<Messages/>}/>
+                                <Route path={"/tasks"} element={<Tasks filters={tasksFilters} setFilter={setTasksFilters}/>}/>
+                                <Route path={"/settings"} element={<Settings userInformation={authInfo} setUserInformation={setAuthInfo} theme={theme} setTheme={setTheme}/>}/>
+                            </>
+                            : <Route path={"/*"} element={<Navigate to={"/auth"}/>}/>}
                     </Routes>
                 </BrowserRouter>
             </AppContext.Provider>
