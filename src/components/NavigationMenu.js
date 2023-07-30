@@ -9,10 +9,11 @@ import {ReactComponent as NotificationsIcon} from "../images/svg/notifications-i
 import {ReactComponent as MessagesIcon} from "../images/svg/messages-icon.svg";
 import {ReactComponent as TasksIcon} from "../images/svg/tasks-icon.svg";
 import {ReactComponent as SettingsIcon} from "../images/svg/settings-icon.svg";
+import {ReactComponent as SignOutIcon} from "../images/svg/sign-out-icon.svg";
 import {AppContext} from "../App";
 
 export const NavigationMenu = () => {
-    const {userInformation, setUserInformation} = useContext(AppContext)
+    const {userInformation, setUserInformation, authInfo} = useContext(AppContext)
     const [expandedState, setExpandedState] = useState(false);
     const [notificationVisible, setNotificationVisible] = useState(false)
 
@@ -47,14 +48,14 @@ export const NavigationMenu = () => {
                         </NavigationMenuLink>
                     </div>
                     <div className="menu-group">
-                        <NavigationMenuLink toPage={"/announcements"}>
+                        {authInfo.userRole === "ROLE_PASTRY" && <NavigationMenuLink toPage={"/announcements"}>
                             <div className="menu-item">
                                 <AnnouncementsIcon/>
                                 <p className="menu-item-title">Оголошення</p>
                             </div>
-                        </NavigationMenuLink>
+                        </NavigationMenuLink>}
                         <div className="menu-item-wrapper">
-                            <div className={`menu-item ${notificationVisible ? "active-page" : ""}`} onClick={() => {
+                            <div className={`notification-icon menu-item ${notificationVisible ? "active-page" : ""}`} onClick={() => {
                                 setNotificationVisible(!notificationVisible)
                             }}>
                                 <NotificationsIcon/>
@@ -73,15 +74,21 @@ export const NavigationMenu = () => {
                         <NavigationMenuLink toPage={"/tasks"}>
                             <div className="menu-item">
                                 <TasksIcon/>
-                                <p className="menu-item-title">Завдання</p>
+                                <p className="menu-item-title">{authInfo.userRole === "ROLE_PASTRY" ? "Завдання" : "Замовлення"}</p>
                             </div>
                         </NavigationMenuLink>
-                    </div>
-                    <div className="menu-group">
                         <NavigationMenuLink toPage={"/settings"}>
                             <div className="menu-item">
                                 <SettingsIcon/>
                                 <p className="menu-item-title">Налаштування</p>
+                            </div>
+                        </NavigationMenuLink>
+                    </div>
+                    <div className="menu-group">
+                        <NavigationMenuLink toPage={"/auth"}>
+                            <div className="menu-item" onClick={() => localStorage.removeItem("user")}>
+                                <SignOutIcon/>
+                                <p className="menu-item-title">Вийти</p>
                             </div>
                         </NavigationMenuLink>
                     </div>
@@ -103,15 +110,18 @@ export const NavigationMenu = () => {
 
                 <div className={"mobile-bottom-navigation"}>
                     <div className="mobile-navigation-items">
-                        <div className={`mobile-notification-button ${notificationVisible ? "active-page" : ""}`} onClick={() => setNotificationVisible(!notificationVisible)}>
+                        <div className={`mobile-notification-button notification-icon ${notificationVisible ? "active-page" : ""}`} onClick={() => setNotificationVisible(!notificationVisible)}>
                             <NotificationsIcon/>
                         </div>
                         <NavigationMenuLink toPage={"/tasks"} onClick={() => setNotificationVisible(false)}>
                             <TasksIcon/>
                         </NavigationMenuLink>
-                        <NavigationMenuLink toPage={"/announcements"} onClick={() => setNotificationVisible(false)}>
-                            <AnnouncementsIcon/>
-                        </NavigationMenuLink>
+                        {
+                            authInfo.userRole === "ROLE_PASTRY" &&
+                            <NavigationMenuLink toPage={"/announcements"} onClick={() => setNotificationVisible(false)}>
+                                <AnnouncementsIcon/>
+                            </NavigationMenuLink>
+                        }
                         <NavigationMenuLink toPage={"/messages"} onClick={() => setNotificationVisible(false)}>
                             <MessagesIcon/>
                         </NavigationMenuLink>

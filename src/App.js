@@ -9,28 +9,23 @@ import {Settings} from "./pages/Settings";
 import {SignUpSignIn} from "./pages/SignUpSignIn";
 import {Tasks} from "./pages/Tasks";
 import axios from "axios";
+import {Announcement} from "./pages/Announcement";
+import {NewAnnouncement} from "./pages/NewAnnouncement";
 
 export const AppContext = createContext(null)
 
 function App() {
     const [menuIsVisible, setMenuVisibility] = useState(false)
-    const [theme, setTheme] = useState("green")
-    const dessertFiltersFromDB = ["#торт", "#капкейк", "#печиво"]
-    const locationFiltersFromDB = ["Львів", "Київ", "Луцьк", "Рівне", "Тернопіль", "Харків"]
-    const dateFiltersFromDB = ["Весь час", "Сьогодні", "Останні 7 днів"]
-    const sortingFromDB = ["Спочатку нові", "Спочатку старі"]
+    const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "green")
+    useEffect(() => {
+        document.body.id = theme + "-theme"
+    }, [theme])
 
     const createFiltersFromDB = (filters, fieldName) => {
         return filters.map((value, index) => {
-            return {id: index, title: value[fieldName], checked: false}
+            return {id: index, title: fieldName ? value[fieldName] : value, checked: false}
         })
     }
-
-    const dateFilters = createFiltersFromDB(dateFiltersFromDB)
-    dateFilters[0].checked = true
-
-    const sorting = createFiltersFromDB(sortingFromDB)
-    sorting[0].checked = true
 
     const authFromStorage = localStorage.getItem("user")
     const [authInfo, setAuthInfo] = useState(authFromStorage !== null ? JSON.parse(authFromStorage) : null)
@@ -55,27 +50,43 @@ function App() {
     }, [authInfo])
 
 
-    const [filters, setFilter] = useState({
-        dessert: createFiltersFromDB(dessertFiltersFromDB),
-        location: createFiltersFromDB(locationFiltersFromDB),
-        date: [...dateFilters],
-        sort: [...sorting],
-        quick: false,
-        favorites: false
-    })
-
-    const [tasksFilters, setTasksFilters] = useState({
-        todo: true,
-        completed: false
-    })
+    const [locations, setLocations] = useState([])
+    const [dessertTypes, setDessertType] = useState([])
+    const dateFilters = createFiltersFromDB(["Весь час", "Сьогодні", "Останні 7 днів"])
+    dateFilters[0].checked = true
+    const sorting = createFiltersFromDB(["Спочатку нові", "Спочатку старі"])
+    sorting[0].checked = true
+    const [sortingOrder, setSortingOrder] = useState(sorting)
+    const [date, setDate] = useState(dateFilters)
 
     useEffect(() => {
-        document.body.id = theme + "-theme"
-    }, [theme])
+        if (authInfo) {
+            axios.get("http://192.168.0.106:8080/api/v1/locations").then(value => {
+                setLocations(createFiltersFromDB(value.data, "locationName"))
+            })
+            axios.get("http://192.168.0.106:8080/api/v1/dessert-types").then(value => {
+                setDessertType(createFiltersFromDB(value.data, "dessertTypeName"))
+            })
+        }
+    }, [authInfo])
+
 
     return (
         <div className="App">
-            <AppContext.Provider value={{filters, setFilter, authInfo, setAuthInfo, userInformation, setUserInformation}}>
+            <AppContext.Provider value={{
+                authInfo,
+                setAuthInfo,
+                userInformation,
+                setUserInformation,
+                locations,
+                setLocations,
+                date,
+                setDate,
+                dessertTypes,
+                setDessertType,
+                sortingOrder,
+                setSortingOrder
+            }}>
                 <BrowserRouter>
                     {menuIsVisible && <NavigationMenu/>}
                     <Routes>
@@ -84,9 +95,11 @@ function App() {
                             <>
                                 <Route path={"/"} element={<Navigate to={authInfo ? `/profile/${authInfo.username}` : "/auth"}/>}/>
                                 <Route path={"/profile/:username"} element={<Profile userInformation={authInfo}/>}/>
-                                <Route path={"/announcements"} element={<Announcements filters={filters} setFilter={setFilter}/>}/>
+                                <Route path={"/announcements"} element={<Announcements/>}/>
+                                <Route path={"/announcement/:announcementId"} element={<Announcement/>}/>
+                                <Route path={"/announcement/new"} element={<NewAnnouncement/>}/>
                                 <Route path={"/messages/:username?"} element={<Messages/>}/>
-                                <Route path={"/tasks"} element={<Tasks filters={tasksFilters} setFilter={setTasksFilters}/>}/>
+                                <Route path={"/tasks"} element={<Tasks/>}/>
                                 <Route path={"/settings"} element={<Settings userInformation={authInfo} setUserInformation={setAuthInfo} theme={theme} setTheme={setTheme}/>}/>
                             </>
                             : <Route path={"/*"} element={<Navigate to={"/auth"}/>}/>}

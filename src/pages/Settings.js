@@ -3,6 +3,7 @@ import {ReactComponent as InstagramIcon} from "../images/svg/instagram-icon.svg"
 import {ReactComponent as FacebookIcon} from "../images/svg/facebook-icon.svg";
 import {ReactComponent as YouTubeIcon} from "../images/svg/youtube-icon.svg";
 import {ReactComponent as TikTokIcon} from "../images/svg/tiktok-icon.svg";
+import {ReactComponent as WalletIcon} from "../images/svg/wallet-icon.svg";
 import {Dropdown} from "../components/Dropdown";
 import {useContext, useEffect, useState} from "react";
 import {AppContext} from "../App";
@@ -13,10 +14,9 @@ export const Settings = (props) => {
     const {userInformation, setUserInformation, authInfo} = useContext(AppContext)
     const [locations, setLocations] = useState([])
     const [selectedLocation, setSelectedLocation] = useState()
-    const [imageFile, setImageFile] = useState()
+    const [imageFile, setImageFile] = useState(null)
     useEffect(() => {
         if (userInformation) {
-            console.log(userInformation)
             axios.get("http://192.168.0.106:8080/api/v1/locations").then(value => {
                 setLocations(createFiltersFromDB(value.data, "locationName"))
             })
@@ -40,6 +40,49 @@ export const Settings = (props) => {
     return (
         <div className="settings-wrapper">
             <div className="settings-content">
+                <div className="theme-preferences-settings">
+                    <div className="theme-preferences-settings-title">
+                        Зміна теми
+                    </div>
+                    <div className="theme-preferences-buttons">
+                        <div id="green-theme-button" className={`theme-preference-button ${props.theme === "green" ? "active" : ""}`} onClick={() => {
+                            props.setTheme("green")
+                            localStorage.setItem("theme", "green")
+                        }}>
+                            М'ятна
+                        </div>
+                        <div id="purple-theme-button" className={`theme-preference-button ${props.theme === "purple" ? "active" : ""}`} onClick={() => {
+                            props.setTheme("purple")
+                            localStorage.setItem("theme", "purple")
+                        }}>
+                            Лавандова
+                        </div>
+                        <div id="orange-theme-button" className={`theme-preference-button ${props.theme === "orange" ? "active" : ""}`} onClick={() => {
+                            props.setTheme("orange")
+                            localStorage.setItem("theme", "orange")
+                        }}>
+                            Карамельна
+                        </div>
+                        <div id="blue-theme-button" className={`theme-preference-button ${props.theme === "blue" ? "active" : ""}`} onClick={() => {
+                            props.setTheme("blue")
+                            localStorage.setItem("theme", "blue")
+                        }}>
+                            Чорнична
+                        </div>
+                        <div id="pink-theme-button" className={`theme-preference-button ${props.theme === "pink" ? "active" : ""}`} onClick={() => {
+                            props.setTheme("pink")
+                            localStorage.setItem("theme", "pink")
+                        }}>
+                            Малинова
+                        </div>
+                        <div id="yellow-theme-button" className={`theme-preference-button ${props.theme === "yellow" ? "active" : ""}`} onClick={() => {
+                            props.setTheme("yellow")
+                            localStorage.setItem("theme", "yellow")
+                        }}>
+                            Ванільна
+                        </div>
+                    </div>
+                </div>
                 <div className="profile-settings">
                     <div className="profile-settings-title">
                         Налаштування профілю
@@ -47,11 +90,11 @@ export const Settings = (props) => {
                     <div className="profile-main-settings">
                         <div className="profile-main-settings-user-picture-wrapper">
                             <div className="profile-main-settings-user-picture" onClick={() => {
-                                document.getElementById("image-input").click()
+                                document.getElementById("profile-image-input").click()
                             }}>
                                 {<img src={imageFile ? URL.createObjectURL(imageFile) : userInformation?.userPicture?.pictureURL} alt={""}/>}
                                 <div className="gallery-edit-button">
-                                    <input id="image-input" type="file" onChange={(e) => {
+                                    <input id="profile-image-input" className="image-input" type="file" onChange={(e) => {
                                         if (e.target.files && e.target.files.length > 0) {
                                             console.log(e.target.files[0])
                                             FileResizer.imageFileResizer(
@@ -125,33 +168,20 @@ export const Settings = (props) => {
                                               defaultValue={userInformation?.about}/>
                                 </div>
                             </div>
+                            <div className="profile-main-settings-user-payment-card">
+                                <div className="profile-main-settings-user-payment-card-title">
+                                    Карта для виплат
+                                </div>
+                                <div className="profile-main-settings-user-payment-card-input">
+                                    <WalletIcon/>
+                                    <input id="settings-user-payment-card" className="input" type={"number"} placeholder="XXXX-XXXX-XXXX-XXXX" maxLength={19}
+                                           defaultValue={userInformation?.paymentCard}/>
+                                </div>
+
+                            </div>
                         </div>}
-                </div>
-                <div className="theme-preferences-settings">
-                    <div className="theme-preferences-settings-title">
-                        Зміна теми
-                    </div>
-                    <div className="theme-preferences-buttons">
-                        <div id="green-theme-button" className={`theme-preference-button ${props.theme === "green" ? "active" : ""}`} onClick={() => props.setTheme("green")}>
-                            Mint
-                        </div>
-                        <div id="purple-theme-button" className={`theme-preference-button ${props.theme === "purple" ? "active" : ""}`} onClick={() => props.setTheme("purple")}>
-                            Lavender
-                        </div>
-                        <div id="orange-theme-button" className={`theme-preference-button ${props.theme === "orange" ? "active" : ""}`} onClick={() => props.setTheme("orange")}>
-                            Caramel
-                        </div>
-                        <div id="blue-theme-button" className={`theme-preference-button ${props.theme === "blue" ? "active" : ""}`} onClick={() => props.setTheme("blue")}>
-                            Blueberry
-                        </div>
-                        <div id="pink-theme-button" className={`theme-preference-button ${props.theme === "pink" ? "active" : ""}`} onClick={() => props.setTheme("pink")}>
-                            Raspberry
-                        </div>
-                        <div id="yellow-theme-button" className={`theme-preference-button ${props.theme === "yellow" ? "active" : ""}`} onClick={() => props.setTheme("yellow")}>
-                            Vanilla
-                        </div>
-                    </div>
-                    <button onClick={() => {
+
+                    <div className="button" onClick={() => {
                         const about = document.getElementById("settings-user-about")?.value.trim()
                         const tiktok = document.getElementById("settings-user-tiktok")?.value.trim()
                         const youtube = document.getElementById("settings-user-youtube")?.value.trim()
@@ -159,21 +189,10 @@ export const Settings = (props) => {
                         const instagram = document.getElementById("settings-user-instagram")?.value.trim()
                         const firstName = document.getElementById("settings-user-firstname").value.trim()
                         const lastName = document.getElementById("settings-user-lastname").value.trim()
+                        const paymentCard = document.getElementById("settings-user-payment-card")?.value.trim().replace("-", "")
 
-                        // alert(
-                        //     {
-                        //         username: authInfo.username,
-                        //         firstName: firstName,
-                        //         lastName: lastName,
-                        //         instagram: instagram?.length > 0 ? instagram : null,
-                        //         facebook: facebook?.length > 0 ? facebook : null,
-                        //         youtube: youtube?.length > 0 ? youtube : null,
-                        //         tiktok: tiktok?.length > 0 ? tiktok : null,
-                        //         about: about?.length > 0 ? about : null,
-                        //         location: selectedLocation
-                        //     }
-                        // )
                         if (imageFile) {
+                            console.log("lox")
                             const formData = new FormData()
                             formData.append("image", imageFile)
                             axios.post("http://192.168.0.106:8080/api/v1/content", formData, {
@@ -193,7 +212,8 @@ export const Settings = (props) => {
                                         tiktok: tiktok?.length > 0 ? tiktok : null,
                                         about: about?.length > 0 ? about : null,
                                         location: selectedLocation,
-                                        userPicture: response.data
+                                        userPicture: response.data,
+                                        paymentCard: paymentCard
                                     },
                                     {
                                         headers: {
@@ -215,7 +235,8 @@ export const Settings = (props) => {
                                     tiktok: tiktok?.length > 0 ? tiktok : null,
                                     about: about?.length > 0 ? about : null,
                                     location: selectedLocation,
-                                    userPicture: userInformation.userPicture
+                                    userPicture: userInformation.userPicture,
+                                    paymentCard: paymentCard
                                 },
                                 {
                                     headers: {
@@ -225,8 +246,8 @@ export const Settings = (props) => {
                             ).then(response => setUserInformation(response.data))
                         }
                     }}>
-                        SAVE
-                    </button>
+                        Зберегти зміни
+                    </div>
                 </div>
             </div>
         </div>

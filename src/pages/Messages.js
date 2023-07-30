@@ -8,27 +8,25 @@ import {ChatWindow} from "../components/ChatWindow";
 export const Messages = () => {
     const [activeChat, setActiveChat] = useState(null)
     const navigation = useNavigate()
-    const {userInformation, authInfo} = useContext(AppContext)
+    const {authInfo} = useContext(AppContext)
     const {username} = useParams()
     const [chats, setChats] = useState([])
-
-    useEffect(() => {
-        if (userInformation) {
-            axios.get(
-                `http://192.168.0.106:8080/api/v1/chats/${userInformation?.username}`,
-                {
-                    headers: {
-                        "Authorization": authInfo.token
-                    }
+    const [chatsUpdateInterval, setChatsUpdateInterval] = useState(null)
+    const [messagesUpdateInterval, setMessagesUpdateInterval] = useState(null)
+    const getCurrentChats = () => {
+        axios.get(
+            `http://192.168.0.106:8080/api/v1/chats/${authInfo?.username}`,
+            {
+                headers: {
+                    "Authorization": authInfo.token
                 }
-            ).then(value => {
-                setChats(value.data)
-            })
-        }
-    }, [userInformation])
+            }
+        ).then(value => {
+            setChats(value.data)
+        })
+    }
 
-
-    useEffect(() => {
+    const getCurrentMessages = (username) => {
         if (username) {
             axios.get(
                 `http://192.168.0.106:8080/api/v1/chats/${authInfo.username}/${username}`,
@@ -43,7 +41,32 @@ export const Messages = () => {
         } else {
             setActiveChat(null)
         }
-        console.log(username)
+    }
+
+    // useEffect(() => {
+    //     getCurrentChats()
+    // }, [authInfo])
+
+
+    useEffect(() => {
+        getCurrentChats()
+        setChatsUpdateInterval(setInterval(() => {
+            getCurrentChats()
+        }, 2000))
+        return () => clearInterval(chatsUpdateInterval)
+    }, [])
+
+    useEffect(() => {
+        if (username !== undefined) {
+            getCurrentMessages(username)
+            setMessagesUpdateInterval(setInterval(() => {
+                getCurrentMessages(username)
+            }, 2000))
+        } else {
+            setActiveChat(null)
+            clearInterval(messagesUpdateInterval)
+        }
+        return () => clearInterval(messagesUpdateInterval)
     }, [username])
 
     return (

@@ -16,9 +16,7 @@ export const Dropdown = (props) => {
         return () => document.body.removeEventListener("click", closeFilter)
     }, [isOpen, props.id])
 
-    // useEffect(()=>{
-    //     console.log(props.filters)
-    // },[props.filters])
+
     return (
         <div id={`dropdown-filter-${props.id}`}
              className={`dropdown-filter ${isOpen ? "open" : ""}`}>

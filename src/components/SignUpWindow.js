@@ -62,8 +62,6 @@ export const SignUpWindow = (props) => {
                         setAuthInfo(value.data)
                         navigate("/settings")
                     })
-                    // console.log()
-                    // props.setSignInSignUpPage(true)
                 }}>
                     Зареєструватися
                 </div>

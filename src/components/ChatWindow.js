@@ -5,11 +5,13 @@ import {Message} from "./Message";
 import {ReactComponent as PrevIcon} from "../images/svg/prev-icon.svg";
 import {ReactComponent as GalleryIcon} from "../images/svg/gallery-icon.svg";
 import {ReactComponent as SendIcon} from "../images/svg/send-icon.svg";
+import {useNavigate} from "react-router-dom";
 
 export const ChatWindow = (props) => {
     const {userInformation, authInfo} = useContext(AppContext)
     const interlocutor = props.activeChat?.firstUser.username === userInformation?.username ? props.activeChat?.secondUser : props.activeChat?.firstUser;
     const [newMessage, setNewMessage] = useState("")
+    const navigation = useNavigate()
     const ref = useRef(null)
 
     const handleInput = (event) => {
@@ -64,7 +66,9 @@ export const ChatWindow = (props) => {
                     <div className="chat-header-wrapper">
                         <div className="chat-header">
                             <div className="chat-header-content">
-                                <div className="icon-button" onClick={() => props.setActiveChat(null)}>
+                                <div className="icon-button" onClick={(e) => {
+                                    navigation("/messages")
+                                }}>
                                     <PrevIcon/>
                                 </div>
                                 <div className="chat-header-username">
@@ -87,9 +91,10 @@ export const ChatWindow = (props) => {
                         }
                     </div>
                     <div className="chat-window-input-bar">
-                        <div className="icon-button">
-                            <GalleryIcon/>
-                        </div>
+                        <div className="div" style={{width:"10px"}}></div>
+                        {/*<div className="icon-button">*/}
+                        {/*    <GalleryIcon/>*/}
+                        {/*</div>*/}
                         <textarea
                             className="chat-window-input"
                             placeholder="Напишіть повідомлення..."
